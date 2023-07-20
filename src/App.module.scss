@@ -7,3 +7,24 @@
     margin: 0 auto;
     padding: 1em;
 }
+.title{
+    margin-bottom: 1em;
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+
+    & > * {
+        width: 100%;
+    }
+}
+.button{
+    margin-top: 1em;
+}
+.item{
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+    
+}
