@@ -99,7 +99,7 @@ function App() {
               <input
                 {...onlyNumbers(register("amount"))}
                 type="text"
-                placeholder="amount in kg"
+                placeholder="amount in units"
               />
             </label>
             <label className={style.input}>
@@ -107,11 +107,11 @@ function App() {
               <input
                 {...onlyNumbers(register("price"))}
                 type="text"
-                placeholder="price per kg"
+                placeholder="price"
               />
             </label>
             <label className={style.input}>
-              <input {...register("notes")} type="text" placeholder="notes" />
+              <teaxtarea {...register("notes")} placeholder="notes" />
             </label>
             <button type="submit" className={style.button}>
               add
