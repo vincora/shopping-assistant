@@ -111,7 +111,7 @@ function App() {
               />
             </label>
             <label className={style.input}>
-              <teaxtarea {...register("notes")} placeholder="notes" />
+              <textarea {...register("notes")} placeholder="notes"></textarea>
             </label>
             <button type="submit" className={style.button}>
               add
