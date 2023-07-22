@@ -82,6 +82,7 @@ function App() {
                       <div>Price: {item.price}</div>
                       <div>Price per kg: {item.pricePerUnit}</div>
                       <div>Notes: {item.notes}</div>
+                    
                     </div>
                   );
                 })}
