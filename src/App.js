@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import style from "./App.module.scss";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,6 +21,7 @@ const onlyNumbers = ({ onChange, ...rest }) => {
 const schema = z.object({
   amount: z.string().nonempty("This field is required"),
   price: z.string().nonempty("This field is required"),
+  notes: z.string().optional(),
 });
 
 function App() {
@@ -39,15 +40,23 @@ function App() {
   });
 
   const [page, setPage] = useState(0);
-  // const [item, setItem] = useState({
-  //   amount: 0,
-  //   price: 0,
-  //   notes: "",
-  // });
   const [itemList, setItemList] = useState([]);
 
+  const sortedItems = useMemo(
+    () => itemList.sort((a, b) => a.pricePerUnit - b.pricePerUnit),
+    [itemList]
+  );
+
   const onSubmit = (data) => {
-    setItemList([...itemList, data]);
+    setItemList([
+      ...itemList,
+      {
+        amount: data.amount,
+        price: data.price,
+        pricePerUnit: +data.price / +data.amount,
+        notes: data.notes,
+      },
+    ]);
     setPage(0);
     console.log(data);
   };
@@ -63,7 +72,7 @@ function App() {
           <div>
             {itemList.length > 0 && (
               <div className={style.itemList}>
-                {itemList.map((item) => {
+                {sortedItems.map((item) => {
                   return (
                     <div
                       className={style.item}
@@ -71,9 +80,8 @@ function App() {
                     >
                       <div>Amount: {item.amount}</div>
                       <div>Price: {item.price}</div>
-                      <div>
-                        Price per kg: {Number(item.price) / Number(item.amount)}
-                      </div>
+                      <div>Price per kg: {item.pricePerUnit}</div>
+                      <div>Notes: {item.notes}</div>
                     </div>
                   );
                 })}
@@ -96,13 +104,13 @@ function App() {
             <label className={style.input}>
               <p className={style.error}>{errors.price?.message}</p>
               <input
-                type="text"
                 {...onlyNumbers(register("price"))}
+                type="text"
                 placeholder="price per kg"
               />
             </label>
             <label className={style.input}>
-              <input type="text" {...register("notes")} placeholder="notes" />
+              <input {...register("notes")} type="text" placeholder="notes" />
             </label>
             <button type="submit" className={style.button}>
               add
