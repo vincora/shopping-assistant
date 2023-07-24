@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -10,6 +9,7 @@ import { addItem } from "../../store/itemsSlice";
 const onlyNumbers = ({ onChange, ...rest }) => {
   const handleChange = (e) => {
     let count = 0;
+
     e.target.value = e.target.value
       .replace(/[^\d.,]/g, "")
       .replace(",", ".")
@@ -34,8 +34,7 @@ const ItemForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitSuccessful },
-    reset,
+    formState: { errors },
   } = useForm({
     defaultValues: {
       amount: "",
@@ -44,15 +43,11 @@ const ItemForm = () => {
     },
     resolver: zodResolver(schema),
   });
+
   const onSubmit = (data) => {
     dispatch(addItem(data));
     navigate("/");
   };
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset();
-    }
-  }, [isSubmitSuccessful, reset]);
 
   const navigate = useNavigate();
 
