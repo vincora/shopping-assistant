@@ -6,6 +6,8 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import FirstPage from "./components/main/FirstPage";
 import ItemForm from "./components/new-item/ItemForm";
+import { Provider } from "react-redux";
+import store from './store/store';
 
 const router = createBrowserRouter([
   {
@@ -14,11 +16,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <FirstPage  />,
+        element: <FirstPage />,
       },
       {
         path: "form",
-        element: <ItemForm  />,
+        element: <ItemForm />,
       },
     ],
   },
@@ -27,11 +29,10 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

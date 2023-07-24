@@ -3,7 +3,9 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import style from "../../App.module.scss";
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addItem } from "../../store/itemsSlice";
 
 const onlyNumbers = ({ onChange, ...rest }) => {
   const handleChange = (e) => {
@@ -26,7 +28,9 @@ const schema = z.object({
 });
 
 const ItemForm = () => {
-  const { setItemList, itemList } = useOutletContext();
+
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -41,16 +45,7 @@ const ItemForm = () => {
     resolver: zodResolver(schema),
   });
   const onSubmit = (data) => {
-    setItemList([
-      ...itemList,
-      {
-        amount: data.amount,
-        pricePerItem: data.price,
-        pricePerUnit: +data.pricePerItem / +data.amount,
-        notes: data.notes,
-      },
-    ]);
-    console.log(data);
+    dispatch(addItem(data));
     navigate("/");
   };
   useEffect(() => {
@@ -63,7 +58,7 @@ const ItemForm = () => {
 
   return (
     <form className={style.inputList} onSubmit={handleSubmit(onSubmit)}>
-      <div className={style.title}>New item</div>
+      <div>New item</div>
       <label className={style.input}>
         <p className={style.error}>{errors.amount?.message}</p>
         <input

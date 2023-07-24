@@ -9,6 +9,11 @@
   margin: 0 auto;
   padding: 1em;
 }
+.title{
+    text-align: center;
+    padding: 1em;
+    font-size: 1.5em;
+}
 .inputList {
   display: flex;
   flex-direction: column;
@@ -31,4 +36,7 @@
 .item{
     padding: .5em;
     border: 1px solid #000;
+}
+.button{
+    padding: .25em;
 }
