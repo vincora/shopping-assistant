@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import style from "../../App.module.scss";
+import style from "../App.module.scss";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addItem } from "../../store/itemsSlice";
+import { addItem } from "../store/itemsSlice";
 
 const onlyNumbers = ({ onChange, ...rest }) => {
   const handleChange = (e) => {

@@ -4,8 +4,8 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import FirstPage from "./components/main/FirstPage";
-import ItemForm from "./components/new-item/ItemForm";
+import FirstPage from "./components/FirstPage";
+import ItemForm from "./components/ItemForm";
 import { Provider } from "react-redux";
 import store from './store/store';
 

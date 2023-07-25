@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 } from "uuid";
 
 const itemsSlice = createSlice({
   name: "items",
@@ -6,16 +7,19 @@ const itemsSlice = createSlice({
     items: [],
   },
   reducers: {
-    addItem(state, action) {
+    addItem: (state, { payload: { amount, pricePerItem, notes } }) => {
       state.items.push({
-        amount: action.payload.amount,
-        pricePerItem: action.payload.pricePerItem,
-        pricePerUnit: (+action.payload.pricePerItem / +action.payload.amount).toFixed(2),
-        notes: action.payload.notes,
+        amount,
+        pricePerItem,
+        notes,
+        id: v4(),
       });
+    },
+    deleteItem: (state, action) => {
+      state.items = state.items.filter((item) => item.id !== action.payload);
     },
   },
 });
 
-export const { addItem } = itemsSlice.actions;
+export const { addItem, deleteItem } = itemsSlice.actions;
 export default itemsSlice.reducer;
