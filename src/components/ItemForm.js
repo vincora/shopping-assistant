@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import style from "../App.module.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
 
@@ -28,7 +28,6 @@ const schema = z.object({
 });
 
 const ItemForm = () => {
-
   const dispatch = useDispatch();
 
   const {
@@ -44,12 +43,13 @@ const ItemForm = () => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    dispatch(addItem(data));
-    navigate("/");
-  };
-
+  const { categoryId } = useParams();
   const navigate = useNavigate();
+
+  const onSubmit = (data) => {
+    dispatch(addItem({categoryId, item: data}));
+    navigate(`/category/${categoryId}`)
+  };
 
   return (
     <form className={style.inputList} onSubmit={handleSubmit(onSubmit)}>

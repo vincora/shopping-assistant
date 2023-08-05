@@ -6,8 +6,15 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import FirstPage from "./components/FirstPage";
 import ItemForm from "./components/ItemForm";
+import CategoryForm from "./components/CategoryForm";
+import Category from "./components/Category";
 import { Provider } from "react-redux";
-import store from './store/store';
+import store from "./store/store";
+
+// / - list of categories
+// /<uuid> - list of items inside <uuid> category
+// /<uuid>/itemForm - form to add new item in <uuid> category
+// /categoryForm - add new category
 
 const router = createBrowserRouter([
   {
@@ -19,7 +26,15 @@ const router = createBrowserRouter([
         element: <FirstPage />,
       },
       {
-        path: "form",
+        path: "categoryForm",
+        element: <CategoryForm />,
+      },
+      {
+        path: 'category/:categoryId',
+        element: <Category />,
+      },
+      {
+        path: "category/:categoryId/itemForm",
         element: <ItemForm />,
       },
     ],

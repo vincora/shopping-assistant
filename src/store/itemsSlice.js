@@ -4,22 +4,44 @@ import { v4 } from "uuid";
 const itemsSlice = createSlice({
   name: "items",
   initialState: {
-    items: [],
+    categories: [],
+    currentCategory: "",
   },
   reducers: {
-    addItem: (state, { payload: { amount, pricePerItem, notes } }) => {
-      state.items.push({
-        amount,
-        pricePerItem,
-        notes,
+    addCategory: (state, action) => {
+      state.categories.push({
+        category: action.payload,
         id: v4(),
+        items: [],
       });
     },
-    deleteItem: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+    addItem: (
+      state,
+      {
+        payload: {
+          categoryId,
+          item: { amount, pricePerItem, notes },
+        },
+      }
+    ) => {
+      for (let category of state.categories) {
+        if (category.id !== categoryId) {
+          continue;
+        }
+        category.items.push({
+          amount,
+          pricePerItem,
+          notes,
+          id: v4(),
+        });
+      }
     },
   },
+
+  // deleteItem: (state, action) => {
+  //   state.items = state.items.filter((item) => item.id !== action.payload);
+  // },
 });
 
-export const { addItem, deleteItem } = itemsSlice.actions;
+export const { addCategory, addItem } = itemsSlice.actions;
 export default itemsSlice.reducer;

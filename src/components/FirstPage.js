@@ -6,38 +6,18 @@ import { deleteItem } from "../store/itemsSlice";
 
 const FirstPage = () => {
   const navigate = useNavigate();
-  const itemList = useSelector((state) => state.items.items);
 
-  const sortedItems = useMemo(
-    () =>
-      itemList
-        .map((item) => ({
-          ...item,
-          pricePerUnit: (item.pricePerItem / item.amount).toFixed(2),
-        }))
-        .sort((a, b) => a.pricePerUnit - b.pricePerUnit),
-    [itemList]
-  );
+
+  // const store = useSelector((state) => state.);
+  const categories = useSelector((state) => state.items.categories);
 
   const dispatch = useDispatch();
 
   return (
     <div className={style.itemList}>
-      {sortedItems.map((item) => {
-        return (
-          <div className={style.item} key={item.id}>
-            <div>Amount in units (kg/l/piece): {item.amount}</div>
-            <div>Price per item: {item.pricePerItem}</div>
-            <div>Price per units (kg/l/piece): {item.pricePerUnit}</div>
-            {item.notes && <div>Notes: {item.notes}</div>}
-            <button onClick={() => dispatch(deleteItem(item.id))}>
-              delete item
-            </button>
-          </div>
-        );
-      })}
-      <button className={style.button} onClick={() => navigate("form")}>
-        add new item
+      {categories.map((item) => <div className={style.item} key={item.id} onClick={() => {navigate(`category/${item.id}`)}}>{item.category}</div>)}
+      <button className={style.button} onClick={() => navigate("categoryForm")}>
+        new category
       </button>
     </div>
   );
