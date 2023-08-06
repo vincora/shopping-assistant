@@ -1,11 +1,13 @@
 import { useMemo } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
+import { deleteItem } from "../store/itemsSlice";
 import style from "../App.module.scss";
 
 const Category = () => {
   const { categoryId } = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const categories = useSelector((state) => state.items.categories);
   const currentCategory = categories.find(
     (element) => element.id === categoryId
@@ -24,8 +26,7 @@ const Category = () => {
   );
 
   return (
-    <div>
-      Category {categoryId}
+    <div className={style.itemList}>
       {sortedItems.map((item) => {
         return (
           <div className={style.item} key={item.id}>
@@ -33,13 +34,13 @@ const Category = () => {
             <div>Price per item: {item.pricePerItem}</div>
             <div>Price per units (kg/l/piece): {item.pricePerUnit}</div>
             {item.notes && <div>Notes: {item.notes}</div>}
-            {/* <button onClick={() => dispatch(deleteItem(item.id))}>
+            <button onClick={() => dispatch(deleteItem({categoryId, item}))}>
               delete item
-            </button> */}
+            </button>
           </div>
         );
       })}
-      <button onClick={() => navigate(`/category/${categoryId}/itemForm`)}>
+      <button className={style.button} onClick={() => navigate(`/category/${categoryId}/itemForm`)}>
         add new item
       </button>
     </div>

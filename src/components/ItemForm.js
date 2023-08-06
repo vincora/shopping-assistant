@@ -46,8 +46,8 @@ const ItemForm = () => {
   const { categoryId } = useParams();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    dispatch(addItem({categoryId, item: data}));
+  const onSubmit = (item) => {
+    dispatch(addItem({categoryId, item}));
     navigate(`/category/${categoryId}`)
   };
 

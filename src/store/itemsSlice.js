@@ -5,7 +5,6 @@ const itemsSlice = createSlice({
   name: "items",
   initialState: {
     categories: [],
-    currentCategory: "",
   },
   reducers: {
     addCategory: (state, action) => {
@@ -36,12 +35,24 @@ const itemsSlice = createSlice({
         });
       }
     },
+    deleteItem: (
+      state,
+      {
+        payload: {
+          categoryId,
+          item: { id },
+        },
+      }
+    ) => {
+      for (let category of state.categories) {
+        if (category.id !== categoryId) {
+          continue;
+        }
+        category.items = category.items.filter((item) => item.id !== id);
+      }
+    },
   },
-
-  // deleteItem: (state, action) => {
-  //   state.items = state.items.filter((item) => item.id !== action.payload);
-  // },
 });
 
-export const { addCategory, addItem } = itemsSlice.actions;
+export const { addCategory, addItem, deleteItem } = itemsSlice.actions;
 export default itemsSlice.reducer;
