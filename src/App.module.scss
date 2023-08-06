@@ -1,43 +1,47 @@
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 .container {
-  max-width: 375px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 1em;
+    max-width: 375px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 1em;
 }
-.title{
+.title {
     text-align: center;
     padding: 1em;
     font-size: 1.5em;
 }
 .inputList {
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-}
-.input {
-  & > * {
-    width: 100%;
-  }
-}
-.error{
-    font-size: .75em;
-    text-align: end;
-}
-.itemList{
     display: flex;
     flex-direction: column;
     gap: 1em;
 }
-.item{
-    padding: .5em;
+.input {
+    & > * {
+        width: 100%;
+    }
+}
+.error {
+    font-size: 0.75em;
+    text-align: end;
+}
+.itemList {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.item {
+    padding: 0.5em;
     border: 1px solid #000;
 }
-.button{
-    padding: .25em;
+.button {
+    padding: 0.25em;
     width: 100%;
+}
+.buttonContainer {
+  display: flex;
+  gap: 1em;
 }

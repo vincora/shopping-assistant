@@ -7,78 +7,89 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
 
 const onlyNumbers = ({ onChange, ...rest }) => {
-  const handleChange = (e) => {
-    let count = 0;
+    const handleChange = (e) => {
+        let count = 0;
 
-    e.target.value = e.target.value
-      .replace(/[^\d.,]/g, "")
-      .replace(",", ".")
-      .replace(/[.]/g, () => (count++ === 0 ? "." : ""));
+        e.target.value = e.target.value
+            .replace(/[^\d.,]/g, "")
+            .replace(",", ".")
+            .replace(/[.]/g, () => (count++ === 0 ? "." : ""));
 
-    onChange.call(this, e);
-  };
+        onChange.call(this, e);
+    };
 
-  return { onChange: handleChange, ...rest };
+    return { onChange: handleChange, ...rest };
 };
 
 const schema = z.object({
-  amount: z.string().nonempty("This field is required"),
-  pricePerItem: z.string().nonempty("This field is required"),
-  notes: z.string().optional(),
+    amount: z.string().nonempty("This field is required"),
+    pricePerItem: z.string().nonempty("This field is required"),
+    notes: z.string().optional(),
 });
 
 const ItemForm = () => {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      amount: "",
-      pricePerItem: "",
-      notes: "",
-    },
-    resolver: zodResolver(schema),
-  });
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({
+        defaultValues: {
+            amount: "",
+            pricePerItem: "",
+            notes: "",
+        },
+        resolver: zodResolver(schema),
+    });
 
-  const { categoryId } = useParams();
-  const navigate = useNavigate();
+    const { categoryId } = useParams();
+    const navigate = useNavigate();
 
-  const onSubmit = (item) => {
-    dispatch(addItem({categoryId, item}));
-    navigate(`/category/${categoryId}`)
-  };
+    const onSubmit = (item) => {
+        dispatch(addItem({ categoryId, item }));
+        navigate(`/category/${categoryId}`);
+    };
 
-  return (
-    <form className={style.inputList} onSubmit={handleSubmit(onSubmit)}>
-      <div>New item</div>
-      <label className={style.input}>
-        <p className={style.error}>{errors.amount?.message}</p>
-        <input
-          {...onlyNumbers(register("amount"))}
-          type="text"
-          placeholder="amount in units"
-        />
-      </label>
-      <label className={style.input}>
-        <p className={style.error}>{errors.price?.message}</p>
-        <input
-          {...onlyNumbers(register("pricePerItem"))}
-          type="text"
-          placeholder="price per item"
-        />
-      </label>
-      <label className={style.input}>
-        <textarea {...register("notes")} placeholder="notes"></textarea>
-      </label>
+    return (
+        <form className={style.inputList} onSubmit={handleSubmit(onSubmit)}>
+            <div>New item</div>
+            <label className={style.input}>
+                <p className={style.error}>{errors.amount?.message}</p>
+                <input
+                    {...onlyNumbers(register("amount"))}
+                    type="text"
+                    placeholder="amount in units"
+                />
+            </label>
+            <label className={style.input}>
+                <p className={style.error}>{errors.price?.message}</p>
+                <input
+                    {...onlyNumbers(register("pricePerItem"))}
+                    type="text"
+                    placeholder="price per item"
+                />
+            </label>
+            <label className={style.input}>
+                <textarea {...register("notes")} placeholder="notes"></textarea>
+            </label>
 
-      <button type="submit" className={style.button}>
-        add
-      </button>
-    </form>
-  );
+            <div className={style.buttonContainer}>
+                <button
+                    className={style.button}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        navigate(`/category/${categoryId}`);
+                    }}
+                >
+                    back
+                </button>
+                <button type="submit" className={style.button}>
+                    add
+                </button>
+            </div>
+        </form>
+    );
 };
 
 export default ItemForm;
