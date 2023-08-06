@@ -24,7 +24,7 @@ const CategoryForm = () => {
 
   const onSubmit = (data) => {
     dispatch(addCategory(data.category));
-    navigate("/");
+    navigate("/", {replace: true});
   };
 
   const navigate = useNavigate();

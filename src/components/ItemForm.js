@@ -48,7 +48,7 @@ const ItemForm = () => {
 
     const onSubmit = (item) => {
         dispatch(addItem({ categoryId, item }));
-        navigate(`/category/${categoryId}`);
+        navigate(`/category/${categoryId}`, {replace: true});
     };
 
     return (
