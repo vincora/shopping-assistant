@@ -2,7 +2,6 @@ import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { deleteItem } from "../store/itemsSlice";
-import style from "../App.module.scss";
 
 const Category = () => {
     const { categoryId } = useParams();
@@ -32,11 +31,11 @@ const Category = () => {
     }, [currentCategory, navigate]);
 
     return (
-        <div className={style.itemList}>
-            <h1 className={style.category}>{currentCategory?.category}</h1>
+        <div className="">
+            <h1>{currentCategory?.category}</h1>
             {sortedItems.map((item) => {
                 return (
-                    <div className={style.item} key={item.id}>
+                    <div className="text-3xl" key={item.id}>
                         <div>Amount in units (kg/l/piece): {item.amount}</div>
                         <div>Price per item: {item.pricePerItem}</div>
                         <div>Price per unit: {item.pricePerUnit}</div>
@@ -51,9 +50,8 @@ const Category = () => {
                     </div>
                 );
             })}
-            <div className={style.buttonContainer}>
+            <div>
                 <button
-                    className={style.button}
                     onClick={() => {
                         navigate("/");
                     }}
@@ -61,7 +59,6 @@ const Category = () => {
                     back
                 </button>
                 <button
-                    className={style.button}
                     onClick={() => navigate(`/category/${categoryId}/itemForm`)}
                 >
                     add new item

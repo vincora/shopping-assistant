@@ -17,37 +17,37 @@ import store from "./store/store";
 // /categoryForm - add new category
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <App />,
-    children: [
-      {
-        index: true,
-        element: <FirstPage />,
-      },
-      {
-        path: "categoryForm",
-        element: <CategoryForm />,
-      },
-      {
-        path: 'category/:categoryId',
-        element: <Category />,
-      },
-      {
-        path: "category/:categoryId/itemForm",
-        element: <ItemForm />,
-      },
-    ],
-  },
+    {
+        path: "/",
+        element: <App />,
+        children: [
+            {
+                index: true,
+                element: <FirstPage />,
+            },
+            {
+                path: "categoryForm",
+                element: <CategoryForm />,
+            },
+            {
+                path: "category/:categoryId",
+                element: <Category />,
+            },
+            {
+                path: "category/:categoryId/itemForm",
+                element: <ItemForm />,
+            },
+        ],
+    },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <Provider store={store}>
+            <RouterProvider router={router} />
+        </Provider>
+    </React.StrictMode>
 );
 
 reportWebVitals();
