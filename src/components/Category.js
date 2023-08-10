@@ -2,6 +2,7 @@ import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { deleteItem } from "../store/itemsSlice";
+import Button from "./Button";
 
 const Category = () => {
     const { categoryId } = useParams();
@@ -31,15 +32,20 @@ const Category = () => {
     }, [currentCategory, navigate]);
 
     return (
-        <div className="">
-            <h1>{currentCategory?.category}</h1>
+        <div className="flex flex-col gap-3">
+            <h1 className="text-xl capitalize">{currentCategory?.category}</h1>
             {sortedItems.map((item) => {
                 return (
-                    <div className="text-3xl" key={item.id}>
-                        <div>Amount in units (kg/l/piece): {item.amount}</div>
-                        <div>Price per item: {item.pricePerItem}</div>
-                        <div>Price per unit: {item.pricePerUnit}</div>
-                        {item.notes && <div>Notes: {item.notes}</div>}
+                    <div>
+                        <div className="border p-3 grid grid-cols-[2fr_1fr]" key={item.id}>
+                            <div>Amount in units (kg/l/piece):</div>
+                            <div className="text-right">{item.amount}</div>
+                            <div>Price per item:</div>
+                            <div className="text-right">{item.pricePerItem}</div>
+                            <div>Price per unit:</div>
+                            <div className="text-right">{item.pricePerUnit}</div>
+                            {item.notes && <div>Notes: {item.notes}</div>}
+                        </div>
                         <button
                             onClick={() =>
                                 dispatch(deleteItem({ categoryId, item }))
@@ -50,19 +56,19 @@ const Category = () => {
                     </div>
                 );
             })}
-            <div>
-                <button
+            <div className="flex gap-1">
+                <Button
                     onClick={() => {
                         navigate("/");
                     }}
                 >
                     back
-                </button>
-                <button
+                </Button>
+                <Button
                     onClick={() => navigate(`/category/${categoryId}/itemForm`)}
                 >
                     add new item
-                </button>
+                </Button>
             </div>
         </div>
     );
