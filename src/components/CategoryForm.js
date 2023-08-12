@@ -16,6 +16,7 @@ const CategoryForm = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm({
         defaultValues: {},
@@ -24,7 +25,7 @@ const CategoryForm = () => {
 
     const onSubmit = (data) => {
         dispatch(addCategory(data.category));
-        navigate("/", { replace: true });
+        reset();
     };
 
     const navigate = useNavigate();
@@ -38,6 +39,7 @@ const CategoryForm = () => {
                 <input
                     className="border rounded p-3 w-full"
                     type="text"
+                    placeholder="type category name"
                     {...register("category")}
                 />
             </div>
