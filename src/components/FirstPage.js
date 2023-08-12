@@ -7,7 +7,7 @@ const FirstPage = () => {
 
     return (
         <div className="flex flex-col h-full">
-            <h1 className="text-xl font-medium text-center mb-4 shrink-0">
+            <h1 className="text-xl font-medium text-center mb-4">
                 Shopping assistant
             </h1>
             <div className="overflow-auto grow">
@@ -15,7 +15,7 @@ const FirstPage = () => {
                     <Category category={category} />
                 ))}
             </div>
-            <div className="shrink-0">
+            <div>
                 <CategoryForm></CategoryForm>
             </div>
         </div>

@@ -1,15 +1,12 @@
 import { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { deleteItem } from "../store/itemsSlice";
-import Button from "./Button";
-import BackBtn from "./BackBtn";
 import Item from "./Item";
+import ItemForm from "./ItemForm";
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
     const navigate = useNavigate();
-    const dispatch = useDispatch();
     const categories = useSelector((state) => state.items.categories);
     const currentCategory = categories.find(
         (element) => element.id === categoryId
@@ -34,32 +31,17 @@ const CategoryPage = () => {
     }, [currentCategory, navigate]);
 
     return (
-        <div>
+        <div className="flex flex-col h-full">
             <h1 className="text-xl capitalize text-center font-medium mb-4">
                 {currentCategory?.category}
             </h1>
-            <div className="flex flex-col gap-3">
+            <div className="grow overflow-auto space-y-3">
                 {sortedItems.map((item) => {
-                    return (
-                        <Item item={item}/>
-                    );
+                    return <Item item={item} />;
                 })}
-                <div className="flex gap-2 absolute bottom-5 left-5 right-5 max-w-sm mx-auto">
-                    <BackBtn
-                        onClick={() => {
-                            navigate("/");
-                        }}
-                    >
-                        Back
-                    </BackBtn>
-                    <Button
-                        onClick={() =>
-                            navigate(`/category/${categoryId}/itemForm`)
-                        }
-                    >
-                        Add new item
-                    </Button>
-                </div>
+            </div>
+            <div className="">
+                <ItemForm />
             </div>
         </div>
     );

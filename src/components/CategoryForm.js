@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addCategory } from "../store/itemsSlice";
 import Button from "./Button";
@@ -28,17 +27,17 @@ const CategoryForm = () => {
         reset();
     };
 
-    const navigate = useNavigate();
-
     return (
         <form
             className="bg-white flex items-center gap-2"
             onSubmit={handleSubmit(onSubmit)}
         >
             <div className="w-full">
-
                 <input
-                    className={clsx("border rounded p-3 w-full", errors.category && 'border-red-600')}
+                    className={clsx(
+                        "border rounded p-3 w-full",
+                        errors.category && "border-red-600"
+                    )}
                     type="text"
                     placeholder="category name"
                     {...register("category")}

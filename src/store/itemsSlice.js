@@ -53,11 +53,14 @@ const itemsSlice = createSlice({
                 );
             }
         },
-        deleteCategory: ( state, {payload}) => {
-            state.categories = state.categories.filter(item => item.id !== payload)
-        }
+        deleteCategory: (state, { payload }) => {
+            state.categories = state.categories.filter(
+                (item) => item.id !== payload
+            );
+        },
     },
 });
 
-export const { addCategory, addItem, deleteItem, deleteCategory } = itemsSlice.actions;
+export const { addCategory, addItem, deleteItem, deleteCategory } =
+    itemsSlice.actions;
 export default itemsSlice.reducer;
