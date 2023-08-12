@@ -30,7 +30,7 @@ const CategoryForm = () => {
     const navigate = useNavigate();
 
     return (
-        <form className="space-y-4 absolute bottom-5 left-5 right-5 max-w-sm mx-auto" onSubmit={handleSubmit(onSubmit)}>
+        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="space-y-2">
                 <p className="text-sm text-right text-red-600">
                     {errors.category?.message}
@@ -49,7 +49,7 @@ const CategoryForm = () => {
                 >
                     Back
                 </BackBtn>
-                <Button type="submit">add new category</Button>
+                <Button type="submit">Add new category</Button>
             </div>
         </form>
     );

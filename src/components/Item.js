@@ -10,8 +10,8 @@ const Item = ({ item }) => {
                 <div className="text-right">{item.pricePerItem}</div>
                 <div>Price per kg/liter:</div>
                 <div className="text-right">{item.pricePerUnit}</div>
-                {item.notes && <div>Notes:</div>}
-                <div className="text-right">{item.notes}</div>
+                {item.notes && <div className="col-span-2" >Notes:</div>}
+                <div className="col-span-2">{item.notes}</div>
             </div>
             {/* <div className="w-full text-right">
                                 <Button

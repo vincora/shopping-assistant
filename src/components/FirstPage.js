@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import Button from "./Button";
 import Category from "./Category";
+import CategoryForm from "./CategoryForm";
 
 const FirstPage = () => {
     const navigate = useNavigate();
@@ -16,9 +17,10 @@ const FirstPage = () => {
                 <Category category={category} dispatch/>
             ))}
             <div className="absolute bottom-5 left-5 right-5 max-w-sm mx-auto">
-                <Button onClick={() => navigate("categoryForm")}>
-                    new category
-                </Button>
+                <CategoryForm></CategoryForm>
+                {/* <Button onClick={() => navigate("categoryForm")}>
+                new category
+                </Button> */}
             </div>
         </div>
     );
