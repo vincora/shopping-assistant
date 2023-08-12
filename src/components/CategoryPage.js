@@ -33,50 +33,59 @@ const CategoryPage = () => {
     }, [currentCategory, navigate]);
 
     return (
-        <div className="flex flex-col gap-3">
-            <h1 className="text-xl capitalize">{currentCategory?.category}</h1>
-            {sortedItems.map((item) => {
-                return (
-                    <div className="border p-3 space-y-2">
-                        <div className="grid grid-cols-[2fr_1fr]" key={item.id}>
-                            <div>Amount in units (kg/l/piece):</div>
-                            <div className="text-right">{item.amount}</div>
-                            <div>Price per item:</div>
-                            <div className="text-right">
-                                {item.pricePerItem}
-                            </div>
-                            <div>Price per unit:</div>
-                            <div className="text-right">
-                                {item.pricePerUnit}
-                            </div>
-                            {item.notes && <div>Notes: {item.notes}</div>}
-                        </div>
-                        {/* <div className="w-full text-right">
-                            <Button
-                                onClick={() =>
-                                    dispatch(deleteItem({ categoryId, item }))
-                                }
-                                remove
+        <div>
+            <h1 className="text-xl capitalize text-center font-medium mb-4">
+                {currentCategory?.category}
+            </h1>
+            <div className="flex flex-col gap-3">
+                {sortedItems.map((item) => {
+                    return (
+                        <div className="border p-3 space-y-2">
+                            <div
+                                className="grid grid-cols-[2fr_1fr]"
+                                key={item.id}
                             >
-                                <div className="icon-icon-delete"></div>
-                            </Button>
-                        </div> */}
-                    </div>
-                );
-            })}
-            <div className="flex gap-2 absolute bottom-5 left-5 right-5 max-w-sm mx-auto">
-                <BackBtn
-                    onClick={() => {
-                        navigate("/");
-                    }}
-                >
-                    Back
-                </BackBtn>
-                <Button
-                    onClick={() => navigate(`/category/${categoryId}/itemForm`)}
-                >
-                    Add new item
-                </Button>
+                                <div>Amount in units (kg/l/piece):</div>
+                                <div className="text-right">{item.amount}</div>
+                                <div>Price per item:</div>
+                                <div className="text-right">
+                                    {item.pricePerItem}
+                                </div>
+                                <div>Price per unit:</div>
+                                <div className="text-right">
+                                    {item.pricePerUnit}
+                                </div>
+                                {item.notes && <div>Notes: {item.notes}</div>}
+                            </div>
+                            {/* <div className="w-full text-right">
+                                <Button
+                                    onClick={() =>
+                                        dispatch(deleteItem({ categoryId, item }))
+                                    }
+                                    remove
+                                >
+                                    <div className="icon-icon-delete"></div>
+                                </Button>
+                            </div> */}
+                        </div>
+                    );
+                })}
+                <div className="flex gap-2 absolute bottom-5 left-5 right-5 max-w-sm mx-auto">
+                    <BackBtn
+                        onClick={() => {
+                            navigate("/");
+                        }}
+                    >
+                        Back
+                    </BackBtn>
+                    <Button
+                        onClick={() =>
+                            navigate(`/category/${categoryId}/itemForm`)
+                        }
+                    >
+                        Add new item
+                    </Button>
+                </div>
             </div>
         </div>
     );
