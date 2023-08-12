@@ -1,11 +1,8 @@
-import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import Button from "./Button";
+import { useSelector } from "react-redux";
 import Category from "./Category";
 import CategoryForm from "./CategoryForm";
 
 const FirstPage = () => {
-    const navigate = useNavigate();
     const categories = useSelector((state) => state.items.categories);
 
     return (
@@ -14,13 +11,10 @@ const FirstPage = () => {
                 Shopping assistant
             </h1>
             {categories.map((category) => (
-                <Category category={category} dispatch/>
+                <Category category={category} />
             ))}
             <div className="absolute bottom-5 left-5 right-5 max-w-sm mx-auto">
                 <CategoryForm></CategoryForm>
-                {/* <Button onClick={() => navigate("categoryForm")}>
-                new category
-                </Button> */}
             </div>
         </div>
     );
