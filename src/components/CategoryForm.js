@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addCategory } from "../store/itemsSlice";
 import Button from "./Button";
+import BackBtn from "./BackBtn";
 
 const schema = z.object({
     category: z.string().nonempty("This field is required"),
@@ -29,19 +30,27 @@ const CategoryForm = () => {
     const navigate = useNavigate();
 
     return (
-        <form className='flex flex-col gap-4' onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
             <div className="space-y-2">
-                <p className='text-sm text-right text-red-600'>{errors.category?.message}</p>
+                <p className="text-sm text-right text-red-600">
+                    {errors.category?.message}
+                </p>
                 <input
                     className="border rounded p-3 w-full"
                     type="text"
                     {...register("category")}
                 />
             </div>
-            <Button type="submit">
-            add new category
-            </Button>
-
+            <div className="flex gap-2 absolute bottom-5 left-5 right-5 max-w-sm mx-auto">
+                <BackBtn
+                    onClick={() => {
+                        navigate("/");
+                    }}
+                >
+                    Back
+                </BackBtn>
+                <Button type="submit">add new category</Button>
+            </div>
         </form>
     );
 };
