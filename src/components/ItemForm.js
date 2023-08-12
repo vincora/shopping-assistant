@@ -6,6 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
 import Button from "./Button";
+import BackBtn from "./BackBtn";
 
 const onlyNumbers = ({ onChange, ...rest }) => {
     const handleChange = (e) => {
@@ -81,16 +82,14 @@ const ItemForm = () => {
                 ></textarea>
             </label>
 
-            <div className={style.buttonContainer}>
-                <Button
+            <div className='flex gap-2 fixed bottom-5 left-0 right-0 max-w-sm mx-auto'>
+                <BackBtn
                     onClick={(e) => {
                         e.preventDefault();
                         navigate(`/category/${categoryId}`);
                     }}
-                >
-                    back
-                </Button>
-                <Button type="submit">add</Button>
+                >Back</BackBtn>
+                <Button type="submit">Add</Button>
             </div>
         </form>
     );

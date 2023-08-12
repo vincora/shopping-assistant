@@ -8,7 +8,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import FirstPage from "./components/FirstPage";
 import ItemForm from "./components/ItemForm";
 import CategoryForm from "./components/CategoryForm";
-import Category from "./components/Category";
+import CategoryPage from "./components/CategoryPage";
 import { Provider } from "react-redux";
 import store from "./store/store";
 
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "category/:categoryId",
-                element: <Category />,
+                element: <CategoryPage/>,
             },
             {
                 path: "category/:categoryId/itemForm",

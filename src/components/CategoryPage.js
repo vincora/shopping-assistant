@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { deleteItem } from "../store/itemsSlice";
 import Button from "./Button";
+import BackBtn from "./BackBtn";
 
-const Category = () => {
+const CategoryPage = () => {
     const { categoryId } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -50,7 +51,7 @@ const Category = () => {
                             </div>
                             {item.notes && <div>Notes: {item.notes}</div>}
                         </div>
-                        <div className="w-full text-right">
+                        {/* <div className="w-full text-right">
                             <Button
                                 onClick={() =>
                                     dispatch(deleteItem({ categoryId, item }))
@@ -59,17 +60,18 @@ const Category = () => {
                             >
                                 <div className="icon-icon-delete"></div>
                             </Button>
-                        </div>
+                        </div> */}
                     </div>
                 );
             })}
-            <div className="flex gap-2">
-                <button
-                className="w-full hover:text-gray-300"
+            <div className="flex gap-2 fixed bottom-5 left-0 right-0 max-w-sm mx-auto">
+                <BackBtn
                     onClick={() => {
                         navigate("/");
                     }}
-                >Back</button>
+                >
+                    Back
+                </BackBtn>
                 <Button
                     onClick={() => navigate(`/category/${categoryId}/itemForm`)}
                 >
@@ -80,4 +82,4 @@ const Category = () => {
     );
 };
 
-export default Category;
+export default CategoryPage;
