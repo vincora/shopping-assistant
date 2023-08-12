@@ -82,7 +82,7 @@ const ItemForm = () => {
                 ></textarea>
             </label>
 
-            <div className='flex gap-2 fixed bottom-5 left-0 right-0 max-w-sm mx-auto'>
+            <div className='flex gap-2 absolute bottom-5 left-5 right-5 max-w-sm mx-auto'>
                 <BackBtn
                     onClick={(e) => {
                         e.preventDefault();
