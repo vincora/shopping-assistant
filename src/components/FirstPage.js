@@ -7,10 +7,10 @@ const FirstPage = () => {
     const categories = useSelector((state) => state.items.categories);
 
     return (
-        <div className=" flex flex-col gap-4 justify-between">
+        <div className=" flex flex-col gap-3 justify-between">
             {categories.map((item) => (
                 <div
-                    className="p-3 rounded bg-white"
+                    className="p-3 rounded bg-white cursor-pointer"
                     key={item.id}
                     onClick={() => {
                         navigate(`category/${item.id}`);

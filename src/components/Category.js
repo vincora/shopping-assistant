@@ -36,38 +36,44 @@ const Category = () => {
             <h1 className="text-xl capitalize">{currentCategory?.category}</h1>
             {sortedItems.map((item) => {
                 return (
-                    <div>
-                        <div className="border p-3 grid grid-cols-[2fr_1fr]" key={item.id}>
+                    <div className="border p-3 space-y-2">
+                        <div className="grid grid-cols-[2fr_1fr]" key={item.id}>
                             <div>Amount in units (kg/l/piece):</div>
                             <div className="text-right">{item.amount}</div>
                             <div>Price per item:</div>
-                            <div className="text-right">{item.pricePerItem}</div>
+                            <div className="text-right">
+                                {item.pricePerItem}
+                            </div>
                             <div>Price per unit:</div>
-                            <div className="text-right">{item.pricePerUnit}</div>
+                            <div className="text-right">
+                                {item.pricePerUnit}
+                            </div>
                             {item.notes && <div>Notes: {item.notes}</div>}
                         </div>
-                        <button
-                            onClick={() =>
-                                dispatch(deleteItem({ categoryId, item }))
-                            }
-                        >
-                            delete item
-                        </button>
+                        <div className="w-full text-right">
+                            <Button
+                                onClick={() =>
+                                    dispatch(deleteItem({ categoryId, item }))
+                                }
+                                remove
+                            >
+                                <div className="icon-icon-delete"></div>
+                            </Button>
+                        </div>
                     </div>
                 );
             })}
-            <div className="flex gap-1">
-                <Button
+            <div className="flex gap-2">
+                <button
+                className="w-full hover:text-gray-300"
                     onClick={() => {
                         navigate("/");
                     }}
-                >
-                    back
-                </Button>
+                >Back</button>
                 <Button
                     onClick={() => navigate(`/category/${categoryId}/itemForm`)}
                 >
-                    add new item
+                    Add new item
                 </Button>
             </div>
         </div>

@@ -5,6 +5,7 @@ import style from "../App.module.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
+import Button from "./Button";
 
 const onlyNumbers = ({ onChange, ...rest }) => {
     const handleChange = (e) => {
@@ -52,41 +53,44 @@ const ItemForm = () => {
     };
 
     return (
-        <form className={style.inputList} onSubmit={handleSubmit(onSubmit)}>
-            <div>New item</div>
-            <label className={style.input}>
+        <form className="flex flex-col gap-3" onSubmit={handleSubmit(onSubmit)}>
+            <div className="text-xl">New item</div>
+            <label>
                 <p className={style.error}>{errors.amount?.message}</p>
                 <input
+                    className="p-3 border w-full"
                     {...onlyNumbers(register("amount"))}
                     type="text"
                     placeholder="amount in units"
                 />
             </label>
-            <label className={style.input}>
+            <label>
                 <p className={style.error}>{errors.price?.message}</p>
                 <input
+                    className="p-3 border w-full"
                     {...onlyNumbers(register("pricePerItem"))}
                     type="text"
                     placeholder="price per item"
                 />
             </label>
-            <label className={style.input}>
-                <textarea {...register("notes")} placeholder="notes"></textarea>
+            <label>
+                <textarea
+                    className="p-3 resize-none border w-full"
+                    {...register("notes")}
+                    placeholder="notes"
+                ></textarea>
             </label>
 
             <div className={style.buttonContainer}>
-                <button
-                    className={style.button}
+                <Button
                     onClick={(e) => {
                         e.preventDefault();
                         navigate(`/category/${categoryId}`);
                     }}
                 >
                     back
-                </button>
-                <button type="submit" className={style.button}>
-                    add
-                </button>
+                </Button>
+                <Button type="submit">add</Button>
             </div>
         </form>
     );

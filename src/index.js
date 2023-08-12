@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
+import './icomoon/style.css';
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -11,10 +12,6 @@ import Category from "./components/Category";
 import { Provider } from "react-redux";
 import store from "./store/store";
 
-// / - list of categories
-// /<uuid> - list of items inside <uuid> category
-// /<uuid>/itemForm - form to add new item in <uuid> category
-// /categoryForm - add new category
 
 const router = createBrowserRouter([
     {
