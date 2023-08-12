@@ -1,12 +1,9 @@
-import clsx from "clsx";
 import React from "react";
 
-const Button = ({ children, onClick, type, remove }) => {
+const Button = ({ children, onClick, type }) => {
     return (
         <button
-            className={clsx(
-                "p-3 w-full bg-sky-500 hover:bg-sky-300 rounded text-white text-center cursor-pointer",
-            )}
+            className="p-3 w-full bg-sky-500 hover:bg-sky-300 rounded text-white text-center cursor-pointer"
             onClick={onClick}
             type={type}
         >
