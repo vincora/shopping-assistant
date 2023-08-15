@@ -40,9 +40,7 @@ const CategoryPage = () => {
                     return <Item item={item} />;
                 })}
             </div>
-            <div className="">
-                <ItemForm />
-            </div>
+            <ItemForm />
         </div>
     );
 };
