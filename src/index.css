@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html {
-    height: 100dvh;
+    box-sizing: border-box;
 }
 
 body {
@@ -13,7 +13,6 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    height: 100dvh;
 }
 
 code {
