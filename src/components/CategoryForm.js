@@ -6,8 +6,10 @@ import { addCategory } from "../store/itemsSlice";
 import Button from "./Button";
 import clsx from "clsx";
 
+const fieldName = "category_not_search"; // search prefix is used to prevent safari autofill pop-up
+
 const schema = z.object({
-    category: z.string().nonempty("This field is required"),
+    [fieldName]: z.string().nonempty("This field is required"),
 });
 
 const CategoryForm = () => {
@@ -23,7 +25,7 @@ const CategoryForm = () => {
     });
 
     const onSubmit = (data) => {
-        dispatch(addCategory(data.category));
+        dispatch(addCategory(data[fieldName]));
         reset();
     };
 
@@ -36,11 +38,11 @@ const CategoryForm = () => {
                 <input
                     className={clsx(
                         "border rounded p-3 w-full",
-                        errors.category && "border-red-600"
+                        errors[fieldName] && "border-red-600"
                     )}
                     type="text"
                     placeholder="category name"
-                    {...register("category")}
+                    {...register(fieldName)}
                 />
             </div>
             <div className="">

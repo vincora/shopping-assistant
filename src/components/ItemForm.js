@@ -68,6 +68,7 @@ const ItemForm = () => {
                         className="p-3 border rounded w-full"
                         {...onlyNumbers(register("amount"))}
                         type="text"
+                        name='amount'
                         placeholder="amount in units"
                     />
                 </label>
@@ -77,6 +78,7 @@ const ItemForm = () => {
                         className="p-3 border rounded w-full"
                         {...onlyNumbers(register("pricePerItem"))}
                         type="text"
+                        name='pricePerItem'
                         placeholder="price per item"
                     />
                 </label>
