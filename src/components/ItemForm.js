@@ -55,46 +55,47 @@ const ItemForm = () => {
     };
 
     return (
-        <form className="space-y-3 pt-4 bg-white" onSubmit={handleSubmit(onSubmit)}>
+        <form
+            className=" pt-6 bg-white grid grid-cols-2 gap-3"
+            onSubmit={handleSubmit(onSubmit)}
+        >
             <textarea
-                className="p-3 resize-none border rounded w-full"
+                className="p-3 resize-none border rounded w-full col-span-2"
                 {...register("notes")}
                 placeholder="notes"
             ></textarea>
-            <div className="flex gap-3">
-                <label>
-                    <p className={style.error}>{errors.amount?.message}</p>
-                    <input
-                        className="p-3 border rounded w-full"
-                        {...onlyNumbers(register("amount"))}
-                        type="text"
-                        name='amount'
-                        placeholder="amount in units"
-                    />
-                </label>
-                <label>
-                    <p className={style.error}>{errors.price?.message}</p>
-                    <input
-                        className="p-3 border rounded w-full"
-                        {...onlyNumbers(register("pricePerItem"))}
-                        type="text"
-                        name='pricePerItem'
-                        placeholder="price per item"
-                    />
-                </label>
-            </div>
 
-            <div className="flex gap-2 bottom-5 left-5 right-5 max-w-sm mx-auto">
-                <BackBtn
-                    onClick={(e) => {
-                        e.preventDefault();
-                        navigate("/");
-                    }}
-                >
-                    Back
-                </BackBtn>
-                <Button type="submit">Add</Button>
-            </div>
+            <label>
+                <p className={style.error}>{errors.amount?.message}</p>
+                <input
+                    className="p-3 border rounded w-full"
+                    {...onlyNumbers(register("amount"))}
+                    type="text"
+                    name="amount"
+                    placeholder="amount in units"
+                />
+            </label>
+            <label>
+                <p className={style.error}>{errors.price?.message}</p>
+                <input
+                    className="p-3 border rounded w-full"
+                    {...onlyNumbers(register("pricePerItem"))}
+                    type="text"
+                    name="pricePerItem"
+                    placeholder="price per item"
+                />
+            </label>
+
+            <BackBtn
+                onClick={(e) => {
+                    e.preventDefault();
+                    navigate("/");
+                }}
+            >
+                Back
+            </BackBtn>
+
+            <Button type="submit">Add</Button>
         </form>
     );
 };
