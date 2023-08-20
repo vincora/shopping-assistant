@@ -3,8 +3,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useDispatch } from "react-redux";
 import { addCategory } from "../store/itemsSlice";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import clsx from "clsx";
+import { v4 } from "uuid";
 
 const fieldName = "category_not_search"; // search prefix is used to prevent safari autofill pop-up
 
@@ -14,10 +16,11 @@ const schema = z.object({
 
 const CategoryForm = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
     } = useForm({
         defaultValues: {},
@@ -25,8 +28,9 @@ const CategoryForm = () => {
     });
 
     const onSubmit = (data) => {
-        dispatch(addCategory(data[fieldName]));
-        reset();
+        const id = v4();
+        dispatch(addCategory({ category: data[fieldName], id }));
+        navigate(`category/${id}`);
     };
 
     return (

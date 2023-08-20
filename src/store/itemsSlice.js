@@ -9,8 +9,8 @@ const itemsSlice = createSlice({
     reducers: {
         addCategory: (state, action) => {
             state.categories.push({
-                category: action.payload,
-                id: v4(),
+                category: action.payload.category,
+                id: action.payload.id,
                 items: [],
             });
         },
