@@ -37,7 +37,7 @@ const CategoryPage = () => {
             </h1>
             <div className="grow overflow-auto space-y-3">
                 {sortedItems.map((item) => {
-                    return <Item item={item} />;
+                    return <Item item={item} key={item.id} />;
                 })}
             </div>
             <ItemForm />

@@ -10,7 +10,6 @@ const Category = ({ category }) => {
     return (
         <div
             className=" bg-white cursor-pointer hover:bg-gray-100 flex justify-between items-center "
-            key={category.id}
             onClick={() => {
                 navigate(`category/${category.id}`);
             }}

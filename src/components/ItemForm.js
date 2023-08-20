@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import style from "../App.module.scss";
+import clsx from "clsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
@@ -66,9 +66,11 @@ const ItemForm = () => {
             ></textarea>
 
             <label>
-                <p className={style.error}>{errors.amount?.message}</p>
                 <input
-                    className="p-3 border rounded w-full"
+                    className={clsx(
+                        "border rounded p-3 w-full",
+                        errors.amount && "border-red-600"
+                    )}
                     {...onlyNumbers(register("amount"))}
                     type="text"
                     name="amount"
@@ -76,9 +78,11 @@ const ItemForm = () => {
                 />
             </label>
             <label>
-                <p className={style.error}>{errors.price?.message}</p>
                 <input
-                    className="p-3 border rounded w-full"
+                    className={clsx(
+                        "border rounded p-3 w-full",
+                        errors.pricePerItem && "border-red-600"
+                    )}
                     {...onlyNumbers(register("pricePerItem"))}
                     type="text"
                     name="pricePerItem"

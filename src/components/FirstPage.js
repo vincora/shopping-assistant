@@ -12,7 +12,7 @@ const FirstPage = () => {
             </h1>
             <div className="overflow-auto grow">
                 {categories.map((category) => (
-                    <Category category={category} />
+                    <Category category={category} key={category.id}/>
                 ))}
             </div>
             <div>
