@@ -1,14 +1,16 @@
 import { useRef } from "react";
+import { useDispatch } from "react-redux";
+import { deleteItem } from "../store/itemsSlice";
 
-const Item = ({ item }) => {
+
+const Item = ({ item, categoryId }) => {
     const ref = useRef();
+    const dispatch = useDispatch();
 
     let x1 = null;
     let y1 = null;
     let xDiff = null;
     let yDiff = null;
-
-    let width = ref.current.offsetWidth;
 
     const handleTouchStart = (event) => {
         x1 = event.touches[0].clientX;
@@ -34,14 +36,19 @@ const Item = ({ item }) => {
     };
 
     const handleTouchEnd = () => {
-        if (Math.abs(xDiff)) {
+        const width = ref.current.offsetWidth;
+        if (Math.abs(xDiff) < width * 0.3){
+            ref.current.style.left = 0 + "px";
+        } else {
+            ref.current.style.left = width + "px";
+            dispatch(deleteItem({ categoryId, item }));
         }
     };
 
     return (
         <div className="border rounded relative">
             <div
-                className="grid grid-cols-2 p-3 text-sm bg-white relative z-10"
+                className="grid grid-cols-2 p-3 text-sm bg-white relative z-10 transition duration-500"
                 key={item.id}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
@@ -57,17 +64,7 @@ const Item = ({ item }) => {
                 {item.notes && <div className="col-span-2">Notes:</div>}
                 <div className="col-span-2">{item.notes}</div>
             </div>
-            <div className="absolute left-0 top-0 bottom-0 right-0 bg-red-700 z-0"></div>
-            {/* <div className="w-full text-right">
-                                <Button
-                                    onClick={() =>
-                                        dispatch(deleteItem({ categoryId, item }))
-                                    }
-                                    remove
-                                >
-                                    <div className="icon-icon-delete"></div>
-                                </Button>
-                            </div> */}
+            <div className={"absolute left-0 top-0 bottom-0 right-0 bg-red-700 z-0"}></div>
         </div>
     );
 };
