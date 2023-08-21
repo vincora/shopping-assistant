@@ -7,6 +7,7 @@ html {
     line-height: 1;
     margin: 0;
     padding: 0;
+    
 }
 
 body {
@@ -30,4 +31,8 @@ pointer-events: none;
 height: 0;
 width: 0;
 margin: 0;
+}
+
+* {
+    overscroll-behavior: none;
 }
