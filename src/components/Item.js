@@ -2,7 +2,6 @@ import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { deleteItem } from "../store/itemsSlice";
 
-
 const Item = ({ item, categoryId }) => {
     const ref = useRef();
     const dispatch = useDispatch();
@@ -11,6 +10,8 @@ const Item = ({ item, categoryId }) => {
     let y1 = null;
     let xDiff = null;
     let yDiff = null;
+
+    let itemStatus = true;
 
     const handleTouchStart = (event) => {
         x1 = event.touches[0].clientX;
@@ -30,29 +31,34 @@ const Item = ({ item, categoryId }) => {
         if (Math.abs(xDiff) > Math.abs(yDiff)) {
             if (xDiff < 0) {
                 console.log("left");
-                ref.current.style.left = xDiff + "px";
+                ref.current.style.transform = `translateX(${xDiff}px)`;
             }
         }
     };
 
     const handleTouchEnd = () => {
         const width = ref.current.offsetWidth;
-        if (Math.abs(xDiff) < width * 0.3){
-            ref.current.style.left = 0 + "px";
+        if (Math.abs(xDiff) < width * 0.3) {
+            ref.current.style.transform = `translateX(0)`;
         } else {
-            ref.current.style.left = width + "px";
-            dispatch(deleteItem({ categoryId, item }));
+            ref.current.style.transform = `translateX(${-width}px)`;
+            itemStatus = !itemStatus;
         }
+    };
+
+    const handleTransitionEnd = () => {
+        if (!itemStatus) dispatch(deleteItem({ categoryId, item }));
     };
 
     return (
         <div className="border rounded relative">
             <div
-                className="grid grid-cols-2 p-3 text-sm bg-white relative z-10 transition duration-500"
+                className="grid grid-cols-2 p-3 text-sm bg-white relative z-10 transition-transform duration-200 ease-linear"
                 key={item.id}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
+                onTransitionEnd={handleTransitionEnd}
                 ref={ref}
             >
                 <div>Price:</div>
@@ -64,7 +70,9 @@ const Item = ({ item, categoryId }) => {
                 {item.notes && <div className="col-span-2">Notes:</div>}
                 <div className="col-span-2">{item.notes}</div>
             </div>
-            <div className={"absolute left-0 top-0 bottom-0 right-0 bg-red-700 z-0"}></div>
+            <div className="absolute left-0 top-0 bottom-0 right-0 bg-red-700 z-0 flex justify-end items-center p-6">
+                <div className="icon-icon-delete text-white text-xl text-right"></div>
+            </div>
         </div>
     );
 };
