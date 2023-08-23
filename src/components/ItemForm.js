@@ -75,6 +75,7 @@ const ItemForm = () => {
                     type="text"
                     name="amount"
                     placeholder="amount in units"
+                    inputMode="decimal"
                 />
             </label>
             <label>
@@ -87,6 +88,7 @@ const ItemForm = () => {
                     type="text"
                     name="pricePerItem"
                     placeholder="price per item"
+                    inputMode="decimal"
                 />
             </label>
 
