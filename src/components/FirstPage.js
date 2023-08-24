@@ -14,7 +14,7 @@ const FirstPage = () => {
             <h1 className="text-xl font-medium text-center mb-4">
                 Shopping assistant
             </h1>
-            <div className="overflow-auto grow flex flex-col gap-3">
+            <div className="overflow-auto grow flex flex-col gap-3 ">
                 {categories.map((category) => {
                     const onCategoryDelete = () => {
                         dispatch(deleteCategory(category.id));

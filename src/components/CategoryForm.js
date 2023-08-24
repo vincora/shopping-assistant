@@ -23,7 +23,7 @@ const CategoryForm = () => {
         register,
         handleSubmit,
         formState: { errors },
-        setFocus
+        setFocus,
     } = useForm({
         defaultValues: {},
         resolver: zodResolver(schema),
@@ -35,15 +35,15 @@ const CategoryForm = () => {
         navigate(`category/${id}`);
     };
     useEffect(() => {
-        setFocus(fieldName)
-      }, [setFocus])
+        setFocus(fieldName);
+    }, [setFocus]);
 
     return (
         <form
-            className="bg-white flex items-center gap-2"
+            className="flex items-center gap-2 pt-6 border-t"
             onSubmit={handleSubmit(onSubmit)}
         >
-            <div className="w-full">
+            <div className="w-full bg-white">
                 <input
                     className={clsx(
                         "border rounded p-3 w-full",

@@ -63,7 +63,7 @@ const ItemForm = () => {
 
     return (
         <form
-            className=" pt-6 bg-white grid grid-cols-2 gap-3"
+            className=" pt-6 bg-white grid grid-cols-2 gap-3 border-t"
             onSubmit={handleSubmit(onSubmit)}
         >
             <textarea
