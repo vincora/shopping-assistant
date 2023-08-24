@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 import clsx from "clsx";
 import { v4 } from "uuid";
+import { useEffect } from "react";
 
 const fieldName = "category_not_search"; // search prefix is used to prevent safari autofill pop-up
 
@@ -22,6 +23,7 @@ const CategoryForm = () => {
         register,
         handleSubmit,
         formState: { errors },
+        setFocus
     } = useForm({
         defaultValues: {},
         resolver: zodResolver(schema),
@@ -32,6 +34,9 @@ const CategoryForm = () => {
         dispatch(addCategory({ category: data[fieldName], id }));
         navigate(`category/${id}`);
     };
+    useEffect(() => {
+        setFocus(fieldName)
+      }, [setFocus])
 
     return (
         <form

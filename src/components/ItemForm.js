@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
 import Button from "./Button";
 import BackBtn from "./BackBtn";
+import { useEffect } from "react";
 
 const onlyNumbers = ({ onChange, ...rest }) => {
     const handleChange = (e) => {
@@ -29,6 +30,7 @@ const schema = z.object({
     notes: z.string().optional(),
 });
 
+
 const ItemForm = () => {
     const dispatch = useDispatch();
 
@@ -37,6 +39,7 @@ const ItemForm = () => {
         handleSubmit,
         reset,
         formState: { errors },
+        setFocus
     } = useForm({
         defaultValues: {
             amount: "",
@@ -53,6 +56,10 @@ const ItemForm = () => {
         dispatch(addItem({ categoryId, item }));
         reset();
     };
+    useEffect(() => {
+        setFocus('amount')
+      }, [setFocus])
+    
 
     return (
         <form
