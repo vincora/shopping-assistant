@@ -12,7 +12,7 @@ const ActionElement = ({
     let xDiff = null;
     let yDiff = null;
 
-    let itemStatus = true;
+    let swipeFinish = false;
 
     const handleTouchStart = (event) => {
         x1 = event.touches[0].clientX;
@@ -29,26 +29,28 @@ const ActionElement = ({
         xDiff = x2 - x1;
         yDiff = y2 - y1;
 
-        if (Math.abs(xDiff) > Math.abs(yDiff)) {
-            if (xDiff < 0) {
-                ref.current.style.transform = `translateX(${xDiff}px)`;
-            }
+        if (Math.abs(xDiff) > Math.abs(yDiff) && xDiff < 0) {
+            ref.current.style.transform = `translateX(${xDiff}px)`;
         }
     };
 
     const handleTouchEnd = () => {
+        if (xDiff > 0) {
+            return
+        }
         const width = ref.current.offsetWidth;
         if (Math.abs(xDiff) < width * 0.3) {
             ref.current.style.transform = `translateX(0)`;
         } else {
             ref.current.style.transform = `translateX(${-width}px)`;
-            itemStatus = !itemStatus;
+            swipeFinish = true;
         }
     };
 
     const handleTransitionEnd = () => {
-        if (!itemStatus) {
-            onAction();
+        if (!swipeFinish || !onAction()) {
+            ref.current.style.transform = `translateX(0)`;
+            swipeFinish = false;
         }
     };
 

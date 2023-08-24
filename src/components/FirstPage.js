@@ -17,6 +17,13 @@ const FirstPage = () => {
             <div className="overflow-auto grow flex flex-col gap-3 ">
                 {categories.map((category) => {
                     const onCategoryDelete = () => {
+                        if (
+                            !window.confirm(
+                                `Do you want to delete ${category.category} category?`
+                            )
+                        ) {
+                            return false;
+                        }
                         dispatch(deleteCategory(category.id));
                     };
                     return (

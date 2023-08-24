@@ -7,7 +7,6 @@ import ActionElement from "./ActionElement";
 import { useDispatch } from "react-redux";
 import { deleteItem } from "../store/itemsSlice";
 
-
 const CategoryPage = () => {
     const { categoryId } = useParams();
     const navigate = useNavigate();
@@ -35,8 +34,6 @@ const CategoryPage = () => {
         }
     }, [currentCategory, navigate]);
 
-
-
     return (
         <div className="flex flex-col h-full">
             <h1 className="text-xl capitalize text-center font-medium mb-4">
@@ -53,8 +50,11 @@ const CategoryPage = () => {
                         dispatch(deleteItem({ categoryId, item }));
                     };
                     return (
-                        <ActionElement key={item.id} onAction={handleDelete}>
-                            <Item item={item}/>
+                        <ActionElement
+                            key={item.id}
+                            onAction={handleDelete}
+                        >
+                            <Item item={item} />
                         </ActionElement>
                     );
                 })}
