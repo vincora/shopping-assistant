@@ -1,7 +1,7 @@
 const Item = ({ item }) => {
     return (
         <div
-            className="grid grid-cols-2 p-3 text-sm bg-white border rounded"
+            className="grid grid-cols-[2fr_1fr] p-3 md:p-5 text-sm bg-white border rounded"
             key={item.id}
         >
             <div>Price:</div>

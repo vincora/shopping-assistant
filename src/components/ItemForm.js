@@ -6,7 +6,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
 import Button from "./Button";
-import BackBtn from "./BackBtn";
 import { useEffect } from "react";
 
 const onlyNumbers = ({ onChange, ...rest }) => {
