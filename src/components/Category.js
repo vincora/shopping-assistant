@@ -8,13 +8,13 @@ const Category = ({ category }) => {
 
     return (
         <div
-            className=" bg-white cursor-pointer hover:bg-gray-100 flex justify-between items-center border rounded"
+            className=" bg-white p-4 cursor-pointer md:hover:bg-gray-100 flex justify-between items-center border rounded"
             onClick={() => {
                 navigate(`category/${category.id}`);
             }}
         >
-            <span className="p-4">{category.category}</span>
-
+            <div className="">{category.category}</div>
+            <div className="text-xs">{category.items.length}</div>
         </div>
     );
 };

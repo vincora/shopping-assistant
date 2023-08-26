@@ -55,7 +55,7 @@ const CategoryForm = () => {
                 />
             </div>
             <div className="">
-                <Button type="submit">add</Button>
+                <Button type="submit" bgColor="bg-sky-500" hoverBgColor="bg-sky-300">add</Button>
             </div>
         </form>
     );

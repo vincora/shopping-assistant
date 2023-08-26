@@ -30,7 +30,6 @@ const schema = z.object({
     notes: z.string().optional(),
 });
 
-
 const ItemForm = () => {
     const dispatch = useDispatch();
 
@@ -39,7 +38,7 @@ const ItemForm = () => {
         handleSubmit,
         reset,
         formState: { errors },
-        setFocus
+        setFocus,
     } = useForm({
         defaultValues: {
             amount: "",
@@ -57,9 +56,8 @@ const ItemForm = () => {
         reset();
     };
     useEffect(() => {
-        setFocus('amount')
-      }, [setFocus])
-    
+        setFocus("amount");
+    }, [setFocus]);
 
     return (
         <form
@@ -99,16 +97,19 @@ const ItemForm = () => {
                 />
             </label>
 
-            <BackBtn
+            <Button
                 onClick={(e) => {
                     e.preventDefault();
                     navigate("/");
                 }}
+                backBtn
             >
                 Back
-            </BackBtn>
+            </Button>
 
-            <Button type="submit">Add</Button>
+            <Button type="submit">
+                Add
+            </Button>
         </form>
     );
 };

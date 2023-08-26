@@ -39,11 +39,6 @@ const CategoryPage = () => {
             <h1 className="text-xl capitalize text-center font-medium mb-4">
                 {currentCategory?.category}
             </h1>
-            {/* <div className="grow overflow-auto space-y-3 transition-all">
-                {sortedItems.map((item) => {
-                    return <Item item={item} key={item.id} categoryId={categoryId}/>;
-                })}
-            </div> */}
             <div className="grow overflow-auto space-y-3 transition-all">
                 {sortedItems.map((item) => {
                     const handleDelete = () => {
