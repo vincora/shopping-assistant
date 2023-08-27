@@ -11,7 +11,7 @@ const CategoryPage = () => {
     const { categoryId } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const categories = useSelector((state) => state.items.categories);
+    const categories = useSelector((state) => state.goods.categories);
     const currentCategory = categories.find(
         (element) => element.id === categoryId
     );

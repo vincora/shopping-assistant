@@ -27,6 +27,11 @@ const router = createBrowserRouter([
     },
 ]);
 
+store.subscribe(() => {
+    const state = store.getState();
+    localStorage.setItem("state", JSON.stringify(state));
+});
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
     <React.StrictMode>

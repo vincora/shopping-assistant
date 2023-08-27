@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 } from "uuid";
 
+const state = JSON.parse(localStorage.getItem("state"));
+
 const itemsSlice = createSlice({
-    name: "items",
+    name: "goods",
     initialState: {
-        categories: [],
+        categories: state?.goods?.categories ?? [],
     },
     reducers: {
         addCategory: (state, action) => {

@@ -1,3 +1,4 @@
+
 import { useSelector } from "react-redux";
 import Category from "./Category";
 import CategoryForm from "./CategoryForm";
@@ -6,7 +7,7 @@ import { deleteCategory } from "../store/itemsSlice";
 import { useDispatch } from "react-redux";
 
 const FirstPage = () => {
-    const categories = useSelector((state) => state.items.categories);
+    const categories = useSelector((state) => state.goods.categories);
     const dispatch = useDispatch();
 
     return (

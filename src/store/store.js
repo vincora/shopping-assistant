@@ -3,6 +3,6 @@ import itemsReducer from "./itemsSlice";
 
 export default configureStore({
     reducer: {
-        items: itemsReducer,
+        goods: itemsReducer,
     },
 });
