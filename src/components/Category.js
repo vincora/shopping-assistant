@@ -11,7 +11,7 @@ const Category = ({ category }) => {
                 navigate(`category/${category.id}`);
             }}
         >
-            <div className="">
+            <div className="text-ellipsis overflow-hidden">
                 {category.category}{" "}
                 <span className="text-sm text-gray-400">
                     ({category.items.length})

@@ -36,7 +36,7 @@ const CategoryPage = () => {
 
     return (
         <div className="flex flex-col  h-full">
-            <h1 className="text-xl capitalize text-center font-medium mb-4">
+            <h1 className="text-xl capitalize text-center font-medium mb-4 break-words">
                 {currentCategory?.category}
             </h1>
             <div className="flex flex-col items-center grow overflow-auto space-y-3 transition-all">
