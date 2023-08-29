@@ -6,7 +6,7 @@ const Category = ({ category }) => {
 
     return (
         <div
-            className="group bg-white p-4 cursor-pointer md:hover:bg-gray-100 flex items-center border rounded"
+            className="bg-white p-4 cursor-pointer md:hover:bg-gray-100 flex items-center border rounded"
             onClick={() => {
                 navigate(`category/${category.id}`);
             }}

@@ -52,32 +52,31 @@ const ActionDeleteElement = ({ children, onAction }) => {
 
     return (
         <div
-            className="relative w-10/12 group"
+            className="relative md:w-10/12 w-full"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             onTransitionEnd={handleTransitionEnd}
         >
             <div
-                className="relative z-10 transition-transform duration-200 ease-linear"
+                className="relative z-10 transition-transform duration-200 ease-linear group"
                 ref={ref}
             >
                 {children}
-                <div className="hidden group-hover:md:flex justify-end items-start absolute top-0 -right-9 w-1/2 h-full">
+                <div className="hidden group-hover:md:flex justify-end items-center absolute top-0 -right-9 w-12 h-full">
                     <button
-                        className="p-2"
+                        className="p-3 icon-delete h-full text-gray-300 hover:text-gray-500"
                         onClick={(e) => {
                             e.stopPropagation();
                             onAction();
                         }}
                     >
-                        <div className="icon-icon-delete text-gray-300 hover:text-gray-500"></div>
                     </button>
                 </div>
             </div>
             <div className="absolute inset-0 z-0 flex">
                 <div className="w-full bg-red-700 flex justify-end items-center p-3 border rounded">
-                    <div className="icon-icon-delete text-white text-right"></div>
+                    <div className="icon-delete text-white text-right"></div>
                 </div>
             </div>
         </div>
