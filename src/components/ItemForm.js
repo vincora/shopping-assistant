@@ -1,12 +1,12 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import clsx from "clsx";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
 import Button from "./Button";
 import { useEffect } from "react";
+import { cn } from "../utils";
 
 const onlyNumbers = ({ onChange, ...rest }) => {
     const handleChange = (e) => {
@@ -71,7 +71,7 @@ const ItemForm = () => {
 
             <label>
                 <input
-                    className={clsx(
+                    className={cn(
                         "border rounded p-3 w-full",
                         errors.amount && "border-red-600"
                     )}
@@ -84,7 +84,7 @@ const ItemForm = () => {
             </label>
             <label>
                 <input
-                    className={clsx(
+                    className={cn(
                         "border rounded p-3 w-full",
                         errors.pricePerItem && "border-red-600"
                     )}

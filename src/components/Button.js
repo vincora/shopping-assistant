@@ -1,7 +1,8 @@
 import React from "react";
-import cn from "clsx";
+import { cn } from "../utils";
 
 const Button = ({ children, onClick, type, backBtn }) => {
+
     return (
         <button
             className={cn(
@@ -9,6 +10,7 @@ const Button = ({ children, onClick, type, backBtn }) => {
                 {
                     "bg-white hover:bg-white text-gray-500 hover:text-black":
                         backBtn,
+                   
                 }
             )}
             onClick={onClick}

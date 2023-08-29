@@ -32,6 +32,9 @@ height: 0;
 width: 0;
 margin: 0;
 }
+input, textarea{
+    outline: none;
+}
 
 * {
     overscroll-behavior: none;

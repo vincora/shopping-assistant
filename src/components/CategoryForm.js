@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCategory } from "../store/itemsSlice";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
-import clsx from "clsx";
 import { v4 } from "uuid";
 import { useEffect } from "react";
+import { cn } from "../utils";
 
 const fieldName = "category_not_search"; // search prefix is used to prevent safari autofill pop-up
 
@@ -48,7 +48,7 @@ const CategoryForm = () => {
         >
             <div className="w-full bg-white">
                 <input
-                    className={clsx(
+                    className={cn(
                         "border rounded p-3 w-full",
                         errors[fieldName] && "border-red-600"
                     )}
