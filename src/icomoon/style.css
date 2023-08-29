@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('./fonts/icomoon.eot?k633w4');
-  src:  url('./fonts/icomoon.eot?k633w4#iefix') format('embedded-opentype'),
-    url('./fonts/icomoon.ttf?k633w4') format('truetype'),
-    url('./fonts/icomoon.woff?k633w4') format('woff'),
-    url('./fonts/icomoon.svg?k633w4#icomoon') format('svg');
+  src:  url('./fonts/icomoon.eot?x9a5bq');
+  src:  url('./fonts/icomoon.eot?x9a5bq#iefix') format('embedded-opentype'),
+    url('./fonts/icomoon.ttf?x9a5bq') format('truetype'),
+    url('./fonts/icomoon.woff?x9a5bq') format('woff'),
+    url('./fonts/icomoon.svg?x9a5bq#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -25,21 +25,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-icon-cart:before {
-  content: "\e900";
-}
-.icon-icon-close:before {
-  content: "\e901";
-}
 .icon-icon-delete:before {
   content: "\e902";
 }
-.icon-icon-menu:before {
-  content: "\e903";
-}
-.icon-icon-minus:before {
-  content: "\e904";
-}
-.icon-icon-plus:before {
-  content: "\e906";
+.icon-arrow-down:before {
+  content: "\ea36";
 }
