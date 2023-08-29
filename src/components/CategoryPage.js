@@ -35,27 +35,43 @@ const CategoryPage = () => {
     }, [currentCategory, navigate]);
 
     return (
-        <div className="flex flex-col  h-full">
+        <div className="flex flex-col h-full">
             <h1 className="text-xl capitalize text-center font-medium mb-4 break-words">
                 {currentCategory?.category}
             </h1>
-            <div className="flex flex-col items-center grow overflow-auto space-y-3 transition-all">
-                {sortedItems.map((item) => {
-                    const handleDelete = () => {
-                        if (
-                            !window.confirm("Do you want to delete this item?")
-                        ) {
-                            return false;
-                        }
-                        dispatch(deleteItem({ categoryId, item }));
-                    };
-                    return (
-                        <ActionDeleteElement key={item.id} onAction={handleDelete}>
-                            <Item item={item} />
-                        </ActionDeleteElement>
-                    );
-                })}
-            </div>
+            {itemList.length === 0 && (
+                <div className="grow flex flex-col justify-end items-center p-3 text-center">
+                    <div className="text-white bg-black p-3 rounded">
+                        Add your items to compare them <br /> by price per
+                        amount
+                    </div>
+                    <div className="icon-arrow-down"></div>
+                </div>
+            )}
+            {itemList.length > 0 && (
+                <div className="flex flex-col items-center grow overflow-auto space-y-3 transition-all">
+                    {sortedItems.map((item) => {
+                        const handleDelete = () => {
+                            if (
+                                !window.confirm(
+                                    "Do you want to delete this item?"
+                                )
+                            ) {
+                                return false;
+                            }
+                            dispatch(deleteItem({ categoryId, item }));
+                        };
+                        return (
+                            <ActionDeleteElement
+                                key={item.id}
+                                onAction={handleDelete}
+                            >
+                                <Item item={item} />
+                            </ActionDeleteElement>
+                        );
+                    })}
+                </div>
+            )}
 
             <ItemForm />
         </div>
