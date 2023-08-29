@@ -39,7 +39,7 @@ const CategoryForm = () => {
         if (categories.length === 0){
             setFocus(fieldName)
         };
-    }, [setFocus]);
+    }, [setFocus, categories.length]);
 
     return (
         <form
