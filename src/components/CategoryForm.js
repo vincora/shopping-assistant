@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addCategory } from "../store/itemsSlice";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
@@ -18,6 +18,7 @@ const schema = z.object({
 const CategoryForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const categories = useSelector((state) => state.goods.categories);
 
     const {
         register,
@@ -35,7 +36,9 @@ const CategoryForm = () => {
         navigate(`category/${id}`);
     };
     useEffect(() => {
-        setFocus(fieldName);
+        if (!categories){
+            setFocus(fieldName)
+        };
     }, [setFocus]);
 
     return (
