@@ -56,7 +56,7 @@ const ActionElement = ({
 
     return (
         <div
-            className="relative"
+            className="relative w-10/12"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}

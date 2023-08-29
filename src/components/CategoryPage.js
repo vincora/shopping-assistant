@@ -35,11 +35,11 @@ const CategoryPage = () => {
     }, [currentCategory, navigate]);
 
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col  h-full">
             <h1 className="text-xl capitalize text-center font-medium mb-4">
                 {currentCategory?.category}
             </h1>
-            <div className="grow overflow-auto space-y-3 transition-all">
+            <div className="flex flex-col items-center grow overflow-auto space-y-3 transition-all">
                 {sortedItems.map((item) => {
                     const handleDelete = () => {
                         dispatch(deleteItem({ categoryId, item }));
