@@ -36,7 +36,7 @@ const ActionElement = ({
 
     const handleTouchEnd = () => {
         if (xDiff > 0) {
-            return
+            return;
         }
         const width = ref.current.offsetWidth;
         if (Math.abs(xDiff) < width * 0.3) {
@@ -56,7 +56,7 @@ const ActionElement = ({
 
     return (
         <div
-            className="relative w-10/12"
+            className="relative w-10/12 group"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -77,6 +77,21 @@ export const BackdropActionRemove = () => {
     return (
         <div className=" w-full bg-red-700 flex justify-end items-center p-3 border rounded">
             <div className="icon-icon-delete text-white text-right"></div>
+        </div>
+    );
+};
+export const DeleteButton = ({ onClick }) => {
+    return (
+        <div className="hidden group-hover:md:flex justify-end items-start absolute top-0 -right-9 w-1/2 h-full">
+            <button
+                className="p-2"
+                onClick={(e) => {
+                    e.stopPropagation();
+                    onClick();
+                }}
+            >
+                <div className="icon-icon-delete text-gray-300 hover:text-gray-500"></div>
+            </button>
         </div>
     );
 };

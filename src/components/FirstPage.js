@@ -1,10 +1,10 @@
-
 import { useSelector } from "react-redux";
 import Category from "./Category";
 import CategoryForm from "./CategoryForm";
 import ActionElement from "./ActionElement";
 import { deleteCategory } from "../store/itemsSlice";
 import { useDispatch } from "react-redux";
+import { DeleteButton } from "./ActionElement";
 
 const FirstPage = () => {
     const categories = useSelector((state) => state.goods.categories);
@@ -33,12 +33,13 @@ const FirstPage = () => {
                             onAction={onCategoryDelete}
                         >
                             <Category category={category} />
+                            <DeleteButton onClick={onCategoryDelete} />
                         </ActionElement>
                     );
                 })}
             </div>
             <div>
-                <CategoryForm></CategoryForm>
+                <CategoryForm />
             </div>
         </div>
     );

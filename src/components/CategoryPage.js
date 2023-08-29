@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import Item from "./Item";
 import ItemForm from "./ItemForm";
-import ActionElement from "./ActionElement";
+import ActionElement, { DeleteButton } from "./ActionElement";
 import { useDispatch } from "react-redux";
 import { deleteItem } from "../store/itemsSlice";
 
@@ -45,11 +45,9 @@ const CategoryPage = () => {
                         dispatch(deleteItem({ categoryId, item }));
                     };
                     return (
-                        <ActionElement
-                            key={item.id}
-                            onAction={handleDelete}
-                        >
+                        <ActionElement key={item.id} onAction={handleDelete}>
                             <Item item={item} />
+                            <DeleteButton onClick={handleDelete} />
                         </ActionElement>
                     );
                 })}

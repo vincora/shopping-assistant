@@ -106,9 +106,7 @@ const ItemForm = () => {
                 Back
             </Button>
 
-            <Button type="submit">
-                Add
-            </Button>
+            <Button type="submit">Add</Button>
         </form>
     );
 };
