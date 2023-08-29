@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import Item from "./Item";
 import ItemForm from "./ItemForm";
-import ActionElement, { DeleteButton } from "./ActionElement";
+import ActionDeleteElement from "./ActionDeleteElement";
 import { useDispatch } from "react-redux";
 import { deleteItem } from "../store/itemsSlice";
 
@@ -42,13 +42,17 @@ const CategoryPage = () => {
             <div className="flex flex-col items-center grow overflow-auto space-y-3 transition-all">
                 {sortedItems.map((item) => {
                     const handleDelete = () => {
+                        if (
+                            !window.confirm("Do you want to delete this item?")
+                        ) {
+                            return false;
+                        }
                         dispatch(deleteItem({ categoryId, item }));
                     };
                     return (
-                        <ActionElement key={item.id} onAction={handleDelete}>
+                        <ActionDeleteElement key={item.id} onAction={handleDelete}>
                             <Item item={item} />
-                            <DeleteButton onClick={handleDelete} />
-                        </ActionElement>
+                        </ActionDeleteElement>
                     );
                 })}
             </div>

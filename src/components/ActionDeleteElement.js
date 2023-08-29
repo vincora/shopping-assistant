@@ -1,10 +1,6 @@
 import { useRef } from "react";
 
-const ActionElement = ({
-    children,
-    onAction,
-    backdrop = <BackdropActionRemove />,
-}) => {
+const ActionDeleteElement = ({ children, onAction }) => {
     const ref = useRef();
 
     let x1 = null;
@@ -67,33 +63,25 @@ const ActionElement = ({
                 ref={ref}
             >
                 {children}
+                <div className="hidden group-hover:md:flex justify-end items-start absolute top-0 -right-9 w-1/2 h-full">
+                    <button
+                        className="p-2"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            onAction();
+                        }}
+                    >
+                        <div className="icon-icon-delete text-gray-300 hover:text-gray-500"></div>
+                    </button>
+                </div>
             </div>
-            <div className="absolute inset-0 z-0 flex">{backdrop}</div>
+            <div className="absolute inset-0 z-0 flex">
+                <div className="w-full bg-red-700 flex justify-end items-center p-3 border rounded">
+                    <div className="icon-icon-delete text-white text-right"></div>
+                </div>
+            </div>
         </div>
     );
 };
 
-export const BackdropActionRemove = () => {
-    return (
-        <div className=" w-full bg-red-700 flex justify-end items-center p-3 border rounded">
-            <div className="icon-icon-delete text-white text-right"></div>
-        </div>
-    );
-};
-export const DeleteButton = ({ onClick }) => {
-    return (
-        <div className="hidden group-hover:md:flex justify-end items-start absolute top-0 -right-9 w-1/2 h-full">
-            <button
-                className="p-2"
-                onClick={(e) => {
-                    e.stopPropagation();
-                    onClick();
-                }}
-            >
-                <div className="icon-icon-delete text-gray-300 hover:text-gray-500"></div>
-            </button>
-        </div>
-    );
-};
-
-export default ActionElement;
+export default ActionDeleteElement;
