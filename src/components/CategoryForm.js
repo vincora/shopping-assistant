@@ -36,7 +36,7 @@ const CategoryForm = () => {
         navigate(`category/${id}`);
     };
     useEffect(() => {
-        if (!categories){
+        if (categories.length === 0){
             setFocus(fieldName)
         };
     }, [setFocus]);
