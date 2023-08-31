@@ -1,4 +1,9 @@
 import { useRef } from "react";
+import { cn } from "../utils";
+
+const isMobile =
+    "ontouchstart" in document.documentElement &&
+    navigator.userAgent.match(/Mobi/);
 
 const ActionDeleteElement = ({ children, onAction }) => {
     const ref = useRef();
@@ -52,7 +57,7 @@ const ActionDeleteElement = ({ children, onAction }) => {
 
     return (
         <div
-            className="relative md:w-10/12 w-full"
+            className={cn("w-full relative", "md:w-10/12" && !isMobile)}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -65,13 +70,15 @@ const ActionDeleteElement = ({ children, onAction }) => {
                 {children}
                 <div className="hidden group-hover:md:flex justify-end items-center absolute top-0 -right-9 w-12 h-full">
                     <button
-                        className="p-3 icon-delete h-full text-gray-300 hover:text-gray-500"
+                        className={cn(
+                            "p-3 icon-delete h-full text-gray-300 hover:text-gray-500" &&
+                                !isMobile
+                        )}
                         onClick={(e) => {
                             e.stopPropagation();
                             onAction();
                         }}
-                    >
-                    </button>
+                    ></button>
                 </div>
             </div>
             <div className="absolute inset-0 z-0 flex">
