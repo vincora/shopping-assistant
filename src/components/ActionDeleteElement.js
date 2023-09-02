@@ -57,7 +57,7 @@ const ActionDeleteElement = ({ children, onAction }) => {
 
     return (
         <div
-            className={cn("w-full relative", "md:w-10/12" && !isMobile)}
+            className={cn("w-full relative", {'w-10/12': !isMobile})}
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
@@ -68,18 +68,17 @@ const ActionDeleteElement = ({ children, onAction }) => {
                 ref={ref}
             >
                 {children}
-                <div className="hidden group-hover:md:flex justify-end items-center absolute top-0 -right-9 w-12 h-full">
-                    <button
-                        className={cn(
-                            "p-3 icon-delete h-full text-gray-300 hover:text-gray-500" &&
-                                !isMobile
-                        )}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            onAction();
-                        }}
-                    ></button>
-                </div>
+                {!isMobile && (
+                    <div className="hidden group-hover:md:flex justify-end items-center absolute top-0 -right-9 w-12 h-full">
+                        <button
+                            className="p-3 icon-delete h-full text-gray-300 hover:text-gray-500"
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                onAction();
+                            }}
+                        ></button>
+                    </div>
+                )}
             </div>
             <div className="absolute inset-0 z-0 flex">
                 <div className="w-full bg-red-700 flex justify-end items-center p-3 border rounded">
