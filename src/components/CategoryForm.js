@@ -43,7 +43,7 @@ const CategoryForm = () => {
 
     return (
         <form
-            className="flex items-center gap-2 pt-6 border-t"
+            className="flex items-center gap-2 pt-6 border-t mt-3"
             onSubmit={handleSubmit(onSubmit)}
         >
             <div className="w-full bg-white">
@@ -53,12 +53,12 @@ const CategoryForm = () => {
                         errors[fieldName] && "border-red-600"
                     )}
                     type="text"
-                    placeholder="category name"
+                    placeholder="Category name"
                     {...register(fieldName)}
                 />
             </div>
             <div className="w-min">
-                <Button type="submit" bgColor="bg-sky-500" hoverBgColor="bg-sky-300">add</Button>
+                <Button type="submit" bgColor="bg-sky-500" hoverBgColor="bg-sky-300">Add</Button>
             </div>
         </form>
     );
