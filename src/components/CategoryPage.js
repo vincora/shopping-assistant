@@ -6,7 +6,8 @@ import ItemForm from "./ItemForm";
 import ActionDeleteElement from "./ActionDeleteElement";
 import { useDispatch } from "react-redux";
 import { deleteItem } from "../store/itemsSlice";
-import emptyCategory from '../images/NoItemsCart.png';
+import emptyCategory from "../images/NoItemsCart.png";
+import EmptyListPlaceholder from "./EmptyListPlaceholder";
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
@@ -41,14 +42,12 @@ const CategoryPage = () => {
                 {currentCategory?.category}
             </h1>
             {itemList.length === 0 && (
-                <div className="grow flex flex-col justify-center items-center p-3 text-center">
-                    <img src={emptyCategory} alt="" />
-                    <b className="text-secondary text-sm mt-6">No items in this category yet</b>
-                    <div className="text-secondary text-xs mt-3">
-                    Add items to compare them <br /> by price per
-                        amount
-                    </div>
-                </div>
+                <EmptyListPlaceholder
+                    img={emptyCategory}
+                    title="No items in this category yet"
+                    firstLine="Add items to compare them "
+                    secondLine="by price per unit (kg,l etc.)"
+                />
             )}
             {itemList.length > 0 && (
                 <div className="flex flex-col items-center grow overflow-auto space-y-3 transition-all">
