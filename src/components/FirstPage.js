@@ -13,7 +13,7 @@ const FirstPage = () => {
 
     return (
         <div className="flex flex-col h-full">
-            <h1 className="text-xl font-medium text-center mb-4">
+            <h1 className="text-xl font-medium text-center text-primary mb-6">
                 Shopping assistant
             </h1>
             {categories.length === 0 && (

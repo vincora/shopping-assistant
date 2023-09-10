@@ -38,7 +38,7 @@ const CategoryPage = () => {
 
     return (
         <div className="flex flex-col h-full">
-            <h1 className="text-xl capitalize text-center font-medium mb-4 break-words">
+            <h1 className="text-xl capitalize text-center text-primary font-medium mb-6 break-words">
                 {currentCategory?.category}
             </h1>
             {itemList.length === 0 && (
