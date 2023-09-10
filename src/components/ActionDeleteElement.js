@@ -55,6 +55,7 @@ const ActionDeleteElement = ({ children, onAction }) => {
         }
     };
 
+    
     return (
         <div
             className={cn("w-full relative", {'w-10/12': !isMobile})}
