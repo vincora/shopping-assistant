@@ -1,6 +1,6 @@
 import React from "react";
 
-const EmptyListPlaceholder = ({img, title, firstLine, secondLine}) => {
+const EmptyListPlaceholder = ({img, title, description}) => {
     return (
         <div className="grow flex flex-col justify-center items-center p-3 text-center">
             <img src={img} alt="" />
@@ -8,8 +8,7 @@ const EmptyListPlaceholder = ({img, title, firstLine, secondLine}) => {
                 {title}
             </b>
             <div className="text-secondary text-xs mt-3">
-                {firstLine}<br/>
-                {secondLine}
+                {description}
             </div>
         </div>
     );

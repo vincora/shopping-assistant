@@ -20,8 +20,8 @@ const FirstPage = () => {
                 <EmptyListPlaceholder
                     img={emptyList}
                     title="Your list of categories is empty"
-                    firstLine="Add new category of goods in the form below"
-                    secondLine='(tomatoes, rice, milk etc.)'
+                    description={<>Add new category of goods in the form below <br/>(tomatoes, rice, milk etc.)</>}
+
                 />
             )}
             {categories.length > 0 && (

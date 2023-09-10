@@ -45,8 +45,7 @@ const CategoryPage = () => {
                 <EmptyListPlaceholder
                     img={emptyCategory}
                     title="No items in this category yet"
-                    firstLine="Add items to compare them "
-                    secondLine="by price per unit (kg,l etc.)"
+                    description={<>Add items to compare them <br/> by price per unit (kg,l etc.)</>}
                 />
             )}
             {itemList.length > 0 && (
