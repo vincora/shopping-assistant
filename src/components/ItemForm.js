@@ -54,9 +54,9 @@ const ItemForm = () => {
         dispatch(addItem({ categoryId, item }));
         reset();
     };
-    useEffect(() => {
-        setFocus("amount");
-    }, [setFocus]);
+    // useEffect(() => {
+    //     setFocus("amount");
+    // }, [setFocus]);
 
     return (
         <form
