@@ -5,7 +5,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
 import Button from "./Button";
-import { useEffect } from "react";
 import { cn } from "../utils";
 
 const onlyNumbers = ({ onChange, ...rest }) => {
@@ -37,7 +36,6 @@ const ItemForm = () => {
         handleSubmit,
         reset,
         formState: { errors },
-        setFocus,
     } = useForm({
         defaultValues: {
             amount: "",
@@ -58,6 +56,7 @@ const ItemForm = () => {
     return (
         <form
             className=" pt-6 bg-white grid grid-cols-2 gap-3 border-t mt-3"
+            autocomplete="off"
             onSubmit={handleSubmit(onSubmit)}
         >
             <textarea

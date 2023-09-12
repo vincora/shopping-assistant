@@ -44,6 +44,7 @@ const CategoryForm = () => {
     return (
         <form
             className="flex items-center gap-2 pt-6 border-t mt-3"
+            autocomplete="off"
             onSubmit={handleSubmit(onSubmit)}
         >
             <div className="w-full bg-white">
