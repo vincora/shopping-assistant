@@ -63,7 +63,7 @@ const ItemForm = () => {
             <textarea
                 className="p-3 resize-none border rounded w-full col-span-2"
                 {...register("notes")}
-                placeholder="notes"
+                placeholder="Notes"
             ></textarea>
 
             <label>
@@ -75,7 +75,7 @@ const ItemForm = () => {
                     {...onlyNumbers(register("amount"))}
                     type="text"
                     name="amount"
-                    placeholder="amount in units"
+                    placeholder="Amount in units"
                     inputMode="decimal"
                 />
             </label>
@@ -88,7 +88,7 @@ const ItemForm = () => {
                     {...onlyNumbers(register("pricePerItem"))}
                     type="text"
                     name="pricePerItem"
-                    placeholder="price per item"
+                    placeholder="Price per item"
                     inputMode="decimal"
                 />
             </label>
