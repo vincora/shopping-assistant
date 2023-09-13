@@ -8,7 +8,7 @@ const Button = ({ children, onClick, type, backBtn }) => {
             className={cn(
                 "p-3 w-full rounded text-center cursor-pointer text-white bg-primary hover:bg-secondary",
                 {
-                    "bg-white hover:bg-white text-gray-500 hover:text-black":
+                    "bg-white hover:bg-white text-gray-400 hover:text-black":
                         backBtn,
                    
                 }

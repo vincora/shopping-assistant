@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# Shopping Assistant App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The **Shopping Assistant** is a web application designed to simplify the process of comparing prices of items within the same category, even when they come in different package sizes. It provides users with a clear view of the price per standard unit (e.g., per kilogram, liter, piece) for easy decision-making while shopping.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+-   [Features](#features)
+-   [Getting Started](#getting-started)
+-   [Usage](#usage)
+-   [Technologies Used](#technologies-used)
+-   [Contributing](#contributing)
+-   [License](#license)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-   **Category Management**: Users can create and delete categories for organizing different types of goods (e.g., fruits, dairy, snacks).
 
-### `npm test`
+-   **Item Entry**: Within each category, users can add multiple items specifying the quantity and corresponding price, along with optional notes for additional information.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   **Price Normalization**: The app calculates and displays the price per standard unit for each item, allowing for easy comparison.
 
-### `npm run build`
+-   **Sorting and Filtering**: Items within each category are sorted by price per standard unit, making it simple to identify the most cost-effective option.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   **User-Friendly Interface**: Built using React and Tailwind, the application offers an intuitive and visually appealing experience.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+To get started with the **Shopping Assistant** app, follow these steps:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Clone the repository to your local machine:
+   git clone https://github.com/vincora/shopping-assistant.git
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Navigate to the project directory:
+   cd shopping-assistant
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Install the necessary dependencies:
+   npm install
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+4. Start the development server:
+   npm start
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Usage
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. **Creating a New Category**:
 
-### Code Splitting
+    - Upon opening the app, you'll find a category form at the bottom of the screen. Enter the category name and click on the "Add" button to create it. The app will automatically redirect you inside the category page.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+2. **Adding a New Item**:
 
-### Analyzing the Bundle Size
+    - Inside the category page, you'll find a form to add a new item. Enter the quantity (e.g., kilograms, liters, pieces) and corresponding price for the item. Optionally, add notes for additional information. Click on the "Add" button to add the item to the category.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+3. **Price Comparison**:
 
-### Making a Progressive Web App
+    - The app will automatically calculate and display the price per standard unit for each item.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+4. **Sorting and Filtering**:
 
-### Advanced Configuration
+    - Items within each category are sorted by price per standard unit, allowing for easy comparison.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+5. **Navigating Between Pages**:
 
-### Deployment
+    - To go back from a category page to the list of categories, simply click on the "Back" button.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+6. **Deleting Categories and Items**:
+    - On mobile devices, you can delete categories and items by swiping left. On desktop, the delete button will appear when you hover over the element.
 
-### `npm run build` fails to minify
+## Technologies Used
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+-   [React](https://reactjs.org/)
+-   [Tailwind CSS](https://tailwindcss.com/)
+-   [React Hook Form](https://react-hook-form.com/)
+-   [Redux Toolkit](https://redux-toolkit.js.org/)
+-   [React Router 6](https://reactrouter.com/)
+-   [Zod](https://github.com/colinhacks/zod)
+
+---
+
+## Contributing
+
+If you'd like to contribute to this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push to your forked repository.
+5. Create a pull request to the original repository.
+
+---
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+Feel free to reach out if you have any questions or need further assistance. Happy shopping!
+
+_Julia Glagola_

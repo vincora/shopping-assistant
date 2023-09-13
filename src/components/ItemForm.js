@@ -5,7 +5,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
 import Button from "./Button";
-import { useEffect } from "react";
 import { cn } from "../utils";
 
 const onlyNumbers = ({ onChange, ...rest }) => {
@@ -37,7 +36,6 @@ const ItemForm = () => {
         handleSubmit,
         reset,
         formState: { errors },
-        setFocus,
     } = useForm({
         defaultValues: {
             amount: "",
@@ -54,19 +52,17 @@ const ItemForm = () => {
         dispatch(addItem({ categoryId, item }));
         reset();
     };
-    useEffect(() => {
-        setFocus("amount");
-    }, [setFocus]);
 
     return (
         <form
             className=" pt-6 bg-white grid grid-cols-2 gap-3 border-t mt-3"
+            autocomplete="off"
             onSubmit={handleSubmit(onSubmit)}
         >
             <textarea
                 className="p-3 resize-none border rounded w-full col-span-2"
                 {...register("notes")}
-                placeholder="notes"
+                placeholder="Notes"
             ></textarea>
 
             <label>
@@ -78,7 +74,7 @@ const ItemForm = () => {
                     {...onlyNumbers(register("amount"))}
                     type="text"
                     name="amount"
-                    placeholder="amount in units"
+                    placeholder="Amount in units"
                     inputMode="decimal"
                 />
             </label>
@@ -91,7 +87,7 @@ const ItemForm = () => {
                     {...onlyNumbers(register("pricePerItem"))}
                     type="text"
                     name="pricePerItem"
-                    placeholder="price per item"
+                    placeholder="Price per item"
                     inputMode="decimal"
                 />
             </label>
