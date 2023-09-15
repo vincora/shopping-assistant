@@ -50,16 +50,17 @@ const CategoryForm = () => {
             <div className="w-full bg-white">
                 <input
                     className={cn(
-                        "border rounded p-3 w-full",
+                        "border rounded p-3 w-full focus-visible:outline-1",
                         errors[fieldName] && "border-red-600"
                     )}
                     type="text"
                     placeholder="Category name"
                     {...register(fieldName)}
+                    tabIndex='1'
                 />
             </div>
             <div className="w-min">
-                <Button type="submit" bgColor="bg-sky-500" hoverBgColor="bg-sky-300">Add</Button>
+                <Button type="submit" bgColor="bg-sky-500" hoverBgColor="bg-sky-300" tabIndex="2">Add</Button>
             </div>
         </form>
     );

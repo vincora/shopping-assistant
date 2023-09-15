@@ -63,32 +63,35 @@ const ItemForm = () => {
                 className="p-3 resize-none border rounded w-full col-span-2"
                 {...register("notes")}
                 placeholder="Notes"
+                tabIndex='3'
             ></textarea>
 
             <label>
                 <input
                     className={cn(
                         "border rounded p-3 w-full",
-                        errors.amount && "border-red-600"
+                        errors.amount && "outline-red-600"
                     )}
                     {...onlyNumbers(register("amount"))}
                     type="text"
                     name="amount"
                     placeholder="Amount in units"
                     inputMode="decimal"
+                    tabIndex='1'
                 />
             </label>
             <label>
                 <input
                     className={cn(
                         "border rounded p-3 w-full",
-                        errors.pricePerItem && "border-red-600"
+                        errors.pricePerItem && "outline-red-600"
                     )}
                     {...onlyNumbers(register("pricePerItem"))}
                     type="text"
                     name="pricePerItem"
                     placeholder="Price per item"
                     inputMode="decimal"
+                    tabIndex='2'
                 />
             </label>
 
@@ -98,11 +101,12 @@ const ItemForm = () => {
                     navigate("/");
                 }}
                 backBtn
+                tabIndex='5'
             >
                 Back
             </Button>
 
-            <Button type="submit">Add</Button>
+            <Button type="submit" tabIndex='4'>Add</Button>
         </form>
     );
 };
