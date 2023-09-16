@@ -6,7 +6,7 @@ const Button = ({ children, onClick, type, backBtn, tabIndex }) => {
     return (
         <button
             className={cn(
-                "p-3 w-full rounded text-center cursor-pointer text-white bg-primary hover:bg-secondary focus:outline-offset-4 focus:outline-2",
+                "p-3 w-full h-full border rounded text-center cursor-pointer text-white bg-primary hover:bg-secondary focus:outline-offset-4 focus:outline-2",
                 {
                     "bg-white hover:bg-white text-gray-400 hover:text-black":
                         backBtn,
