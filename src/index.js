@@ -3,12 +3,12 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import "./icomoon/style.css";
 import App from "./App";
-import reportWebVitals from "./reportWebVitals";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import FirstPage from "./components/FirstPage";
 import CategoryPage from "./components/CategoryPage";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const router = createBrowserRouter([
     {
@@ -41,4 +41,4 @@ root.render(
     </React.StrictMode>
 );
 
-reportWebVitals();
+serviceWorkerRegistration.register();
