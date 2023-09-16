@@ -5,26 +5,21 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
 import Button from "./Button";
-import { cn } from "../utils";
-
-const onlyNumbers = ({ onChange, ...rest }) => {
-    const handleChange = (e) => {
-        let count = 0;
-
-        e.target.value = e.target.value
-            .replace(/[^\d.,]/g, "")
-            .replace(",", ".")
-            .replace(/[.]/g, () => (count++ === 0 ? "." : ""));
-
-        onChange.call(this, e);
-    };
-
-    return { onChange: handleChange, ...rest };
-};
+import { cn, safeEvaluate } from "../utils";
 
 const schema = z.object({
-    amount: z.string().nonempty("This field is required"),
-    pricePerItem: z.string().nonempty("This field is required"),
+    pricePerItem: z
+        .string()
+        .refine(
+            (value) => safeEvaluate(value) !== undefined,
+            "Must be valid math expression"
+        ),
+    amount: z
+        .string()
+        .refine(
+            (value) => safeEvaluate(value) !== undefined,
+            "Must be valid math expression"
+        ),
     notes: z.string().optional(),
 });
 
@@ -49,6 +44,8 @@ const ItemForm = () => {
     const navigate = useNavigate();
 
     const onSubmit = (item) => {
+        item.amount = safeEvaluate(item.amount);
+        item.pricePerItem = safeEvaluate(item.pricePerItem);
         dispatch(addItem({ categoryId, item }));
         reset();
     };
@@ -56,15 +53,30 @@ const ItemForm = () => {
     return (
         <form
             className=" pt-6 bg-white grid grid-cols-2 gap-3 border-t mt-3"
-            autocomplete="off"
+            autoComplete="off"
             onSubmit={handleSubmit(onSubmit)}
         >
             <textarea
                 className="p-3 resize-none border rounded w-full col-span-2"
                 {...register("notes")}
                 placeholder="Notes"
-                tabIndex='3'
+                tabIndex="3"
             ></textarea>
+
+            <label>
+                <input
+                    className={cn(
+                        "border rounded p-3 w-full",
+                        errors.pricePerItem && "outline-red-600"
+                    )}
+                    {...register("pricePerItem")}
+                    type="text"
+                    name="pricePerItem"
+                    placeholder="Price per item"
+                    inputMode="decimal"
+                    tabIndex="1"
+                />
+            </label>
 
             <label>
                 <input
@@ -72,26 +84,12 @@ const ItemForm = () => {
                         "border rounded p-3 w-full",
                         errors.amount && "outline-red-600"
                     )}
-                    {...onlyNumbers(register("amount"))}
                     type="text"
                     name="amount"
                     placeholder="Amount in units"
                     inputMode="decimal"
-                    tabIndex='1'
-                />
-            </label>
-            <label>
-                <input
-                    className={cn(
-                        "border rounded p-3 w-full",
-                        errors.pricePerItem && "outline-red-600"
-                    )}
-                    {...onlyNumbers(register("pricePerItem"))}
-                    type="text"
-                    name="pricePerItem"
-                    placeholder="Price per item"
-                    inputMode="decimal"
-                    tabIndex='2'
+                    tabIndex="2"
+                    {...register("amount")}
                 />
             </label>
 
@@ -101,12 +99,14 @@ const ItemForm = () => {
                     navigate("/");
                 }}
                 backBtn
-                tabIndex='5'
+                tabIndex="5"
             >
                 Back
             </Button>
 
-            <Button type="submit" tabIndex='4'>Add</Button>
+            <Button type="submit" tabIndex="4">
+                Add
+            </Button>
         </form>
     );
 };
