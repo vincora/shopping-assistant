@@ -24,7 +24,7 @@ const CategoryPage = () => {
             (itemList ?? [])
                 .map((item) => ({
                     ...item,
-                    pricePerUnit: (item.pricePerItem / item.amount).toFixed(2),
+                    pricePerUnit: (item.pricePerItem / item.amount).toPrecision(2),
                 }))
                 .sort((a, b) => a.pricePerUnit - b.pricePerUnit),
         [itemList]
