@@ -20,14 +20,21 @@ const FirstPage = () => {
                 <EmptyListPlaceholder
                     img={emptyList}
                     title="Your list of categories is empty"
-                    description={<>Add new category of goods in the form below <br/>(tomatoes, rice, milk etc.)</>}
-
+                    description={
+                        <>
+                            Add new category of goods in the form below <br />
+                            (tomatoes, rice, milk etc.)
+                        </>
+                    }
                 />
             )}
             {categories.length > 0 && (
                 <div className="grow overflow-y-scroll flex flex-col items-center gap-3 ">
                     {categories.map((category) => {
                         const onCategoryDelete = () => {
+                            if (category.items.length === 0){
+                                dispatch(deleteCategory(category.id));
+                            } else
                             if (
                                 !window.confirm(
                                     `Do you want to delete ${category.category} category?`
