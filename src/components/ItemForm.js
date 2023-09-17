@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
 import Button from "./Button";
 import { cn, safeEvaluate } from "../utils";
+import { useEffect } from "react";
 
 const schema = z.object({
     pricePerItem: z
@@ -75,6 +76,7 @@ const ItemForm = () => {
                     placeholder="Price per item"
                     inputMode="decimal"
                     tabIndex="1"
+                    id="myInput"
                 />
             </label>
 
@@ -84,12 +86,12 @@ const ItemForm = () => {
                         "border rounded p-3 w-full",
                         errors.amount && "outline-red-600"
                     )}
+                    {...register("amount")}
                     type="text"
                     name="amount"
                     placeholder="Amount in units"
                     inputMode="decimal"
                     tabIndex="2"
-                    {...register("amount")}
                 />
             </label>
 
@@ -100,11 +102,12 @@ const ItemForm = () => {
                 }}
                 backBtn
                 tabIndex="5"
+                type="button"
             >
                 Back
             </Button>
 
-            <Button type="submit" tabIndex="4">
+            <Button type="submit" tabIndex="4" id="myBtn">
                 Add
             </Button>
         </form>

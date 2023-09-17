@@ -1,7 +1,7 @@
 import React from "react";
 import { cn } from "../utils";
 
-const Button = ({ children, onClick, type, backBtn, tabIndex }) => {
+const Button = ({ children, onClick, type, backBtn, tabIndex, id }) => {
 
     return (
         <button
@@ -16,6 +16,7 @@ const Button = ({ children, onClick, type, backBtn, tabIndex }) => {
             onClick={onClick}
             type={type}
             tabIndex={tabIndex}
+            id={id}
         >
             {children}
         </button>
