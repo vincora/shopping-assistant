@@ -1,7 +1,7 @@
 {
     "name": "Shopping assistant",
-    "theme_color": "#2196f3",
-    "background_color": "#2196f3",
+    "theme_color": "ff9200",
+    "background_color": "ff9200",
     "orientation": "portrait",
     "start_url": "/",
     "display": "standalone",
