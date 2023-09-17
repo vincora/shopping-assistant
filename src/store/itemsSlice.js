@@ -1,13 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 } from "uuid";
+import { z } from "zod";
 
 const state = JSON.parse(localStorage.getItem("state"));
 
+const schema = z.object({
+    goods: z.object({
+        categories: z.array(
+            z.object({
+                category: z.string(),
+                id: z.string().uuid(),
+                items: z.array(
+                    z.object({
+                        amount: z.number().nonnegative(),
+                        pricePerItem: z.number().nonnegative(),
+                        notes: z.string(),
+                        id: z.string().uuid(),
+                    })
+                ),
+            })
+        ),
+    }),
+});
+
+const safeState = schema.safeParse(state);
+
 const itemsSlice = createSlice({
     name: "goods",
-    initialState: {
-        categories: state?.goods?.categories ?? [],
-    },
+    initialState: safeState.success ? safeState.data.goods : { categories: [] },
     reducers: {
         addCategory: (state, action) => {
             state.categories.push({

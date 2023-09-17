@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
 import Button from "./Button";
 import { cn, safeEvaluate } from "../utils";
-import { useEffect } from "react";
 
 const schema = z.object({
     pricePerItem: z
