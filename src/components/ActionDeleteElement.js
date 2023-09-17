@@ -1,9 +1,7 @@
 import { useRef } from "react";
 import { cn } from "../utils";
+import {isMobile} from 'react-device-detect';
 
-const isMobile =
-    "ontouchstart" in document.documentElement &&
-    navigator.userAgent.match(/Mobi/);
 
 const ActionDeleteElement = ({ children, onAction }) => {
     const ref = useRef();
