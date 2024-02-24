@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { deleteItem } from "../store/itemsSlice";
 import emptyCategory from "../images/NoItemsCart.png";
 import EmptyListPlaceholder from "./EmptyListPlaceholder";
+import { formatNumber } from "../utils";
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
@@ -19,12 +20,13 @@ const CategoryPage = () => {
     );
     const itemList = currentCategory?.items;
 
+
     const sortedItems = useMemo(
         () =>
             (itemList ?? [])
                 .map((item) => ({
                     ...item,
-                    pricePerUnit: (item.pricePerItem / item.amount).toFixed(2),
+                    pricePerUnit: formatNumber(item.pricePerItem / item.amount),
                 }))
                 .sort((a, b) => a.pricePerUnit - b.pricePerUnit),
         [itemList]
