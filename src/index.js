@@ -9,6 +9,7 @@ import CategoryPage from "./components/CategoryPage";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
+import './i18n';
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,8 @@ store.subscribe(() => {
     const state = store.getState();
     localStorage.setItem("state", JSON.stringify(state));
 });
+
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
