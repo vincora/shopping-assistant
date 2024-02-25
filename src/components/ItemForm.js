@@ -8,7 +8,7 @@ import Button from "./Button";
 import { cn, safeEvaluate } from "../utils";
 
 const schema = z.object({
-    pricePerItem: z
+    pricePerPackage: z
         .string()
         .refine(
             (value) => safeEvaluate(value) !== undefined,
@@ -34,7 +34,7 @@ const ItemForm = () => {
     } = useForm({
         defaultValues: {
             amount: "",
-            pricePerItem: "",
+            pricePerPackage: "",
             notes: "",
         },
         resolver: zodResolver(schema),
@@ -45,7 +45,7 @@ const ItemForm = () => {
 
     const onSubmit = (item) => {
         item.amount = safeEvaluate(item.amount);
-        item.pricePerItem = safeEvaluate(item.pricePerItem);
+        item.pricePerPackage = safeEvaluate(item.pricePerPackage);
         dispatch(addItem({ categoryId, item }));
         reset();
     };
@@ -67,11 +67,11 @@ const ItemForm = () => {
                 <input
                     className={cn(
                         "border rounded p-3 w-full",
-                        errors.pricePerItem && "outline-red-600"
+                        errors.pricePerPackage && "outline-red-600"
                     )}
-                    {...register("pricePerItem")}
+                    {...register("pricePerPackage")}
                     type="text"
-                    name="pricePerItem"
+                    name="pricePerPackage"
                     placeholder="Price per package"
                     inputMode="decimal"
                     tabIndex="1"

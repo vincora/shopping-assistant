@@ -32,7 +32,7 @@ const Item = ({ item }) => {
             key={item.id}
         >
             <div>Price per package:</div>
-            <div className="text-right">{item.pricePerItem}</div>
+            <div className="text-right">{item.pricePerPackage}</div>
             <div>Amount (kilos, liters, pieces):</div>
             <div className="text-right">{item.amount}</div>
             <div>Price per 1 kg/liter/piece:</div>

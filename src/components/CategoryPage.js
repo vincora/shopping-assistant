@@ -20,13 +20,14 @@ const CategoryPage = () => {
     );
     const itemList = currentCategory?.items;
 
-
     const sortedItems = useMemo(
         () =>
             (itemList ?? [])
                 .map((item) => ({
                     ...item,
-                    pricePerUnit: formatNumber(item.pricePerItem / item.amount),
+                    pricePerUnit: formatNumber(
+                        item.pricePerPackage / item.amount
+                    ),
                 }))
                 .sort((a, b) => a.pricePerUnit - b.pricePerUnit),
         [itemList]
@@ -47,7 +48,12 @@ const CategoryPage = () => {
                 <EmptyListPlaceholder
                     img={emptyCategory}
                     title="No items in this category yet"
-                    description={<>Add items to compare them <br/> by price per unit (kg,l etc.)</>}
+                    description={
+                        <>
+                            Add items to compare them <br /> by price per unit
+                            (kg,l etc.)
+                        </>
+                    }
                 />
             )}
             {itemList.length > 0 && (

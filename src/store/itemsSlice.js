@@ -13,7 +13,7 @@ const schema = z.object({
                 items: z.array(
                     z.object({
                         amount: z.number().nonnegative(),
-                        pricePerItem: z.number().nonnegative(),
+                        pricePerPackage: z.number().nonnegative(),
                         notes: z.string(),
                         id: z.string().uuid(),
                     })
@@ -41,7 +41,7 @@ const itemsSlice = createSlice({
             {
                 payload: {
                     categoryId,
-                    item: { amount, pricePerItem, notes },
+                    item: { amount, pricePerPackage, notes },
                 },
             }
         ) => {
@@ -51,7 +51,7 @@ const itemsSlice = createSlice({
                 }
                 category.items.push({
                     amount,
-                    pricePerItem,
+                    pricePerPackage,
                     notes,
                     id: v4(),
                 });
