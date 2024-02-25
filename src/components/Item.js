@@ -31,11 +31,11 @@ const Item = ({ item }) => {
             className="grid grid-cols-[2fr_1fr] p-3 md:p-5 text-sm bg-white border rounded"
             key={item.id}
         >
-            <div>Price:</div>
+            <div>Price per package:</div>
             <div className="text-right">{item.pricePerItem}</div>
-            <div>Amount (kg / litres):</div>
+            <div>Amount (kilos, liters, pieces):</div>
             <div className="text-right">{item.amount}</div>
-            <div>Price per kg/liter:</div>
+            <div>Price per 1 kg/liter/piece:</div>
             <div className="text-right">{item.pricePerUnit}</div>
             {item.notes && <div className="col-span-2">Notes:</div>}
             {item.notes && (

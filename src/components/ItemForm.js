@@ -72,7 +72,7 @@ const ItemForm = () => {
                     {...register("pricePerItem")}
                     type="text"
                     name="pricePerItem"
-                    placeholder="Price per item"
+                    placeholder="Price per package"
                     inputMode="decimal"
                     tabIndex="1"
                     id="myInput"
@@ -88,7 +88,7 @@ const ItemForm = () => {
                     {...register("amount")}
                     type="text"
                     name="amount"
-                    placeholder="Amount in units"
+                    placeholder="Amount (kilos, liters, pieces)"
                     inputMode="decimal"
                     tabIndex="2"
                 />
