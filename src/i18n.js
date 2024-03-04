@@ -36,7 +36,7 @@ i18n
             },
             ru: {
                 translation: {
-                    appTitle: "Shopping assistant",
+                    appTitle: "Помощник покупателя",
                     noCategoryTitle: "Ваш список категорий пуст",
                     noCategoryDescription:
                         "Добавьте новую категорию товаров в форму внизу экрана <br />(помидоры, рис, молоко и т.д.)",
