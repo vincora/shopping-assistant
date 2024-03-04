@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { useTranslation } from "react-i18next";
 
 const Item = ({ item }) => {
     const fullUrlRegex =
@@ -26,18 +27,20 @@ const Item = ({ item }) => {
         return result;
     };
 
+    const { t } = useTranslation();
+
     return (
         <div
             className="grid grid-cols-[2fr_1fr] p-3 md:p-5 text-sm bg-white border rounded"
             key={item.id}
         >
-            <div>Price per package:</div>
+            <div>{t('pricePerPackage')+':'}</div>
             <div className="text-right">{item.pricePerPackage}</div>
-            <div>Amount (kilos, liters, pieces):</div>
+            <div>{t('amount')+':'}</div>
             <div className="text-right">{item.amount}</div>
-            <div>Price per 1 kg/liter/piece:</div>
+            <div>{t('pricePerKg')+':'}</div>
             <div className="text-right">{item.pricePerUnit}</div>
-            {item.notes && <div className="col-span-2">Notes:</div>}
+            {item.notes && <div className="col-span-2">{t('notes')+':'}</div>}
             {item.notes && (
                 <div className="break-words col-span-2">
                     {arrayFromNotesString(item.notes).map((str, index) => {

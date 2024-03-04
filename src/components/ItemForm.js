@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { addItem } from "../store/itemsSlice";
 import Button from "./Button";
 import { cn, safeEvaluate } from "../utils";
+import { useTranslation } from "react-i18next";
 
 const schema = z.object({
     pricePerPackage: z
@@ -61,7 +62,7 @@ const ItemForm = () => {
             <textarea
                 className="p-3 resize-none border rounded w-full col-span-2"
                 {...register("notes")}
-                placeholder="Notes"
+                placeholder={t('notes')}
                 tabIndex="3"
             ></textarea>
 
@@ -74,7 +75,7 @@ const ItemForm = () => {
                     {...register("pricePerPackage")}
                     type="text"
                     name="pricePerPackage"
-                    placeholder="Price per package"
+                    placeholder={t('pricePerPackage')}
                     inputMode="decimal"
                     tabIndex="1"
                     id="myInput"
@@ -90,7 +91,7 @@ const ItemForm = () => {
                     {...register("amount")}
                     type="text"
                     name="amount"
-                    placeholder="Amount (kilos, liters, pieces)"
+                    placeholder={t('amount')}
                     inputMode="decimal"
                     tabIndex="2"
                 />
@@ -105,11 +106,11 @@ const ItemForm = () => {
                 tabIndex="5"
                 type="button"
             >
-                Back
+                {t('backButton')}
             </Button>
 
             <Button type="submit" tabIndex="4" id="myBtn">
-                Add
+                {t('addButton')}
             </Button>
         </form>
     );

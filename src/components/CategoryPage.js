@@ -9,6 +9,7 @@ import { deleteItem } from "../store/itemsSlice";
 import emptyCategory from "../images/NoItemsCart.png";
 import EmptyListPlaceholder from "./EmptyListPlaceholder";
 import { formatNumber } from "../utils";
+import { useTranslation } from "react-i18next";
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
@@ -39,6 +40,8 @@ const CategoryPage = () => {
         }
     }, [currentCategory, navigate]);
 
+    const { t } = useTranslation();
+
     return (
         <div className="flex flex-col h-full">
             <h1 className="text-xl capitalize text-center text-primary font-medium mb-6 break-words">
@@ -47,13 +50,8 @@ const CategoryPage = () => {
             {itemList.length === 0 && (
                 <EmptyListPlaceholder
                     img={emptyCategory}
-                    title="No items in this category yet"
-                    description={
-                        <>
-                            Add items to compare them <br /> by price per unit
-                            (kg,l etc.)
-                        </>
-                    }
+                    title={t('emptyListTitle')}
+                    i18nKey='emptyListDescription'
                 />
             )}
             {itemList.length > 0 && (

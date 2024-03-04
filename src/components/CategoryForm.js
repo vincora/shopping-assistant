@@ -8,6 +8,7 @@ import Button from "./Button";
 import { v4 } from "uuid";
 import { useEffect } from "react";
 import { cn } from "../utils";
+import { useTranslation } from 'react-i18next';
 
 const fieldName = "category_not_search"; // search prefix is used to prevent safari autofill pop-up
 
@@ -41,6 +42,8 @@ const CategoryForm = () => {
         };
     }, [setFocus, categories.length]);
 
+    const { t } = useTranslation();
+
     return (
         <form
             className="flex items-stretch gap-2 pt-6 border-t mt-3"
@@ -54,13 +57,13 @@ const CategoryForm = () => {
                         errors[fieldName] && "border-red-600"
                     )}
                     type="text"
-                    placeholder="Category name"
+                    placeholder={t('categoryPlaceholder')}
                     {...register(fieldName)}
                     tabIndex='1'
                 />
             </div>
             <div className="w-min">
-                <Button type="submit" bgColor="bg-sky-500" hoverBgColor="bg-sky-300" tabIndex="2">Add</Button>
+                <Button type="submit" bgColor="bg-sky-500" hoverBgColor="bg-sky-300" tabIndex="2">{t('addButton')}</Button>
             </div>
         </form>
     );
