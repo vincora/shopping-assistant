@@ -7,39 +7,27 @@ import { useDispatch } from "react-redux";
 import emptyList from "../images/EmptyInbox.png";
 import EmptyListPlaceholder from "./EmptyListPlaceholder";
 import { useTranslation } from "react-i18next";
+import LanguageSwitch from "./LanguageSwitch";
 
 const lngs = {
-    en: { nativeName: "English" },
-    ru: { nativeName: "Russian" },
+    en: { nativeName: "EN" },
+    ru: { nativeName: "RU" },
 };
 
 const FirstPage = () => {
     const categories = useSelector((state) => state.goods.categories);
     const dispatch = useDispatch();
-    const { t, i18n } = useTranslation();
-    
+    const { t } = useTranslation();
+
     return (
         <div className="flex flex-col h-full">
-            <h1 className="text-xl font-medium text-center text-primary mb-6">
+            <h1 className="text-xl font-medium text-center text-primary mb-6 ">
                 {t("appTitle")}
             </h1>
-            <div className="text-center space-x-3">
-                {Object.keys(lngs).map((lng) => (
-                    <button
-                        key={lng}
-                        style={{
-                            fontWeight:
-                                i18n.resolvedLanguage === lng
-                                    ? "bold"
-                                    : "normal",
-                        }}
-                        type="submit"
-                        onClick={() => i18n.changeLanguage(lng)}
-                    >
-                        {lngs[lng].nativeName}
-                    </button>
-                ))}
+            <div className="absolute top-6 right-6 text-right">
+                <LanguageSwitch />
             </div>
+
             {categories.length === 0 && (
                 <EmptyListPlaceholder
                     img={emptyList}
@@ -48,7 +36,7 @@ const FirstPage = () => {
                 />
             )}
             {categories.length > 0 && (
-                <div className="grow overflow-y-scroll flex flex-col items-center gap-3 ">
+                <div className="grow overflow-y-auto flex flex-col items-center gap-3 ">
                     {categories.map((category) => {
                         const onCategoryDelete = () => {
                             if (category.items.length === 0) {

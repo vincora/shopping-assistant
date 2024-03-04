@@ -10,6 +10,7 @@ import emptyCategory from "../images/NoItemsCart.png";
 import EmptyListPlaceholder from "./EmptyListPlaceholder";
 import { formatNumber } from "../utils";
 import { useTranslation } from "react-i18next";
+import LanguageSwitch from "./LanguageSwitch";
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
@@ -47,6 +48,9 @@ const CategoryPage = () => {
             <h1 className="text-xl capitalize text-center text-primary font-medium mb-6 break-words">
                 {currentCategory?.category}
             </h1>
+            <div className="absolute top-6 right-6 text-right">
+                <LanguageSwitch />
+            </div>
             {itemList.length === 0 && (
                 <EmptyListPlaceholder
                     img={emptyCategory}
