@@ -47,7 +47,7 @@ const CategoryPage = () => {
     return (
         <div className="flex flex-col h-full">
             <div className="flex justify-between items-center mb-6 ">
-                <div className="text-transparent uppercase">{currLanguage}</div>
+                <div className="text-transparent text-sm uppercase">{currLanguage}</div>
                 <h1 className="text-xl capitalize text-center text-primary font-medium break-words">
                     {currentCategory?.category}
                 </h1>
