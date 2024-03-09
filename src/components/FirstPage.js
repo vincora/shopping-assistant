@@ -9,11 +9,6 @@ import EmptyListPlaceholder from "./EmptyListPlaceholder";
 import { useTranslation } from "react-i18next";
 import LanguageSwitch from "./LanguageSwitch";
 
-const lngs = {
-    en: { nativeName: "EN" },
-    ru: { nativeName: "RU" },
-};
-
 const FirstPage = () => {
     const categories = useSelector((state) => state.goods.categories);
     const dispatch = useDispatch();
@@ -21,11 +16,13 @@ const FirstPage = () => {
 
     return (
         <div className="flex flex-col h-full">
-            <h1 className="text-xl font-medium text-center text-primary mb-6 ">
-                {t("appTitle")}
-            </h1>
-            <div className="absolute top-6 right-6 text-right">
-                <LanguageSwitch />
+            <div className="relative">
+                <h1 className="text-xl font-medium text-center text-primary mb-6 p-2">
+                    {t("appTitle")}
+                </h1>
+                <div className="absolute top-1 right-6">
+                    <LanguageSwitch />
+                </div>
             </div>
 
             {categories.length === 0 && (

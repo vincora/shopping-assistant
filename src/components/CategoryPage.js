@@ -45,17 +45,19 @@ const CategoryPage = () => {
 
     return (
         <div className="flex flex-col h-full">
-            <h1 className="text-xl capitalize text-center text-primary font-medium mb-6 break-words">
+            <div className="relative">
+            <h1 className="text-xl capitalize text-center text-primary font-medium mb-6 p-2 break-words">
                 {currentCategory?.category}
             </h1>
-            <div className="absolute top-6 right-6 text-right">
-                <LanguageSwitch />
+                <div className="absolute top-1 right-6">
+                    <LanguageSwitch />
+                </div>
             </div>
             {itemList.length === 0 && (
                 <EmptyListPlaceholder
                     img={emptyCategory}
-                    title={t('emptyListTitle')}
-                    i18nKey='emptyListDescription'
+                    title={t("emptyListTitle")}
+                    i18nKey="emptyListDescription"
                 />
             )}
             {itemList.length > 0 && (
