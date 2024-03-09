@@ -41,18 +41,19 @@ const CategoryPage = () => {
         }
     }, [currentCategory, navigate]);
 
-    const { t } = useTranslation();
+    const { i18n, t } = useTranslation();
+    const currLanguage = i18n.resolvedLanguage;
 
     return (
         <div className="flex flex-col h-full">
-            <div className="relative">
-            <h1 className="text-xl capitalize text-center text-primary font-medium mb-6 p-2 break-words">
-                {currentCategory?.category}
-            </h1>
-                <div className="absolute top-1 right-6">
-                    <LanguageSwitch />
-                </div>
+            <div className="flex justify-between items-center mb-6 ">
+                <div className="text-transparent uppercase">{currLanguage}</div>
+                <h1 className="text-xl capitalize text-center text-primary font-medium break-words">
+                    {currentCategory?.category}
+                </h1>
+                <LanguageSwitch />
             </div>
+
             {itemList.length === 0 && (
                 <EmptyListPlaceholder
                     img={emptyCategory}

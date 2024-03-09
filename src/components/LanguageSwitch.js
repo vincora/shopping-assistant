@@ -13,13 +13,15 @@ const LanguageSwitch = () => {
     };
 
     return (
-        <button
-            className="text-sm text-gray-400 p-2 uppercase"
-            type="submit"
-            onClick={() => toggleLanguage()}
-        >
-            {currLanguage}
-        </button>
+        <div className="h-full flex items-center">
+            <button
+                className="text-sm text-gray-400 uppercase"
+                type="submit"
+                onClick={() => toggleLanguage()}
+            >
+                {currLanguage}
+            </button>
+        </div>
     );
 };
 

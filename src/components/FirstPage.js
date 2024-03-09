@@ -12,17 +12,17 @@ import LanguageSwitch from "./LanguageSwitch";
 const FirstPage = () => {
     const categories = useSelector((state) => state.goods.categories);
     const dispatch = useDispatch();
-    const { t } = useTranslation();
+    const { i18n, t } = useTranslation();
+    const currLanguage = i18n.resolvedLanguage;
 
     return (
         <div className="flex flex-col h-full">
-            <div className="relative">
-                <h1 className="text-xl font-medium text-center text-primary mb-6 p-2">
+            <div className="flex justify-between items-center mb-6 ">
+                <div className="text-transparent uppercase">{currLanguage}</div>
+                <h1 className="text-xl font-medium text-center text-primary">
                     {t("appTitle")}
                 </h1>
-                <div className="absolute top-1 right-6">
-                    <LanguageSwitch />
-                </div>
+                <LanguageSwitch />
             </div>
 
             {categories.length === 0 && (
