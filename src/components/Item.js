@@ -1,19 +1,16 @@
 import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
+import * as linkify from "linkifyjs";
+import * as punycode from "punycode/";
 
 const Item = ({ item }) => {
-    const fullUrlRegex =
-        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9]{1,6}\b([-a-zA-Z0-9!@:%_+.~#?&/=]*)/gi;
-
-    const domainRegex =
-        /(www\.)?([-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9]{1,6}\b)/i;
 
     const arrayFromNotesString = (str) => {
-        const matches = Array.from(str.matchAll(fullUrlRegex));
+        const fullUrls = linkify.find(str).filter((url) => url.type === "url");
 
-        const indexes = matches.reduce((acc, match) => {
-            acc.push(match.index);
-            acc.push(match.index + match[0].length);
+        const indexes = fullUrls.reduce((acc, url) => {
+            acc.push(url.start);
+            acc.push(url.end);
 
             return acc;
         }, []);
@@ -27,6 +24,11 @@ const Item = ({ item }) => {
         return result;
     };
 
+    const makeUrl = (str) => {
+        const newUrl = new URL(str);
+        return punycode.toUnicode(newUrl.hostname).replace(/^www./, '');
+    };
+
     const { t } = useTranslation();
 
     return (
@@ -34,32 +36,36 @@ const Item = ({ item }) => {
             className="grid grid-cols-[2fr_1fr] p-3 md:p-5 text-sm bg-white border rounded"
             key={item.id}
         >
-            <div>{t('pricePerPackage')+':'}</div>
+            <div>{t("pricePerPackage") + ":"}</div>
             <div className="text-right">{item.pricePerPackage}</div>
-            <div>{t('amount')+':'}</div>
+            <div>{t("amount") + ":"}</div>
             <div className="text-right">{item.amount}</div>
-            <div>{t('pricePerKg')+':'}</div>
+            <div>{t("pricePerKg") + ":"}</div>
             <div className="text-right">{item.pricePerUnit}</div>
-            {item.notes && <div className="col-span-2">{t('notes')+':'}</div>}
+            {item.notes && <div className="col-span-2">{t("notes") + ":"}</div>}
             {item.notes && (
                 <div className="break-words col-span-2">
-                    {arrayFromNotesString(item.notes).map((str, index) => {
-                        if (!fullUrlRegex.test(str)) {
-                            return <Fragment key={str + index}>{str}</Fragment>;
+                    {arrayFromNotesString(item.notes).map(
+                        (str, index) => {
+                            if (!linkify.test(str, "url")) {
+                                return (
+                                    <Fragment key={str + index}>{str}</Fragment>
+                                );
+                            }
+                            return (
+                                <a
+                                    key={str + index}
+                                    href={str}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="text-primary hover:underline underline-offset-2"
+                                >
+                                    {" "}
+                                    {makeUrl(str)}
+                                </a>
+                            );
                         }
-                        return (
-                            <a
-                                key={str + index}
-                                href={str}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="text-primary hover:underline underline-offset-2"
-                            >
-                                {" "}
-                                {str.match(domainRegex)[2]}
-                            </a>
-                        );
-                    })}
+                    )}
                 </div>
             )}
         </div>
