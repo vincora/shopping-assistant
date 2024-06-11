@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import Item from "./Item";
@@ -13,6 +13,12 @@ import { useTranslation } from "react-i18next";
 import LanguageSwitch from "./LanguageSwitch";
 // import { DiffIcon } from "@primer/octicons-react";
 //установить пакет "@primer/octicons-react": "^19.8.0"
+
+
+const NOTIFICATION_VISIBLE = 1;
+const NOTIFICATION_FADE_OUT = 2;
+const NOTIFICATION_HIDDEN = 3;
+
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
@@ -40,25 +46,45 @@ const CategoryPage = () => {
         [itemList]
     );
 
-    useEffect(() => {
-        if (!currentCategory) {
-            navigate("/", { replace: true });
-        }
-    }, [currentCategory, navigate]);
+
 
     const { i18n, t } = useTranslation();
     const currLanguage = i18n.resolvedLanguage;
 
+    const categoryTitle = currentCategory?.category;
+
+    const [notificationState, setNotificationState] = useState(3);
+    const timeoutRef = useRef(null);
+
     const copyTextToClipboard = async () => {
         try {
-            await navigator.clipboard.writeText(currentCategory?.category);
+            await navigator.clipboard.writeText(categoryTitle);
+            setNotificationState(NOTIFICATION_VISIBLE);
+            timeoutRef.current = setTimeout(() => {
+                setNotificationState(NOTIFICATION_FADE_OUT)
+            }, 1000)
+
         } catch (err) {
             console.error("Ошибка:", err);
         }
     };
 
+    useEffect(() => {
+        if (!currentCategory) {
+            navigate("/", { replace: true });
+        }
+        return () => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        };
+    }, [currentCategory, navigate, timeoutRef]);
+
     return (
-        <div className="flex flex-col h-full">
+        <div className="flex flex-col justify-center h-full relative">
+            {notificationState !== NOTIFICATION_HIDDEN && (<div className={`absolute top-8 p-2 w-full text-sm text-center text-gray-400 transition-opacity ease-in ${(notificationState === NOTIFICATION_FADE_OUT) ? 'opacity-0' : ''}`} onTransitionEnd={() => {setNotificationState(NOTIFICATION_HIDDEN)}}>
+                {t("clipboard")}
+            </div>)}
             <div className="flex justify-between items-center mb-6 ">
                 <div className="text-transparent text-sm uppercase">
                     {currLanguage}
@@ -68,9 +94,9 @@ const CategoryPage = () => {
                 </button> */}
                 <h1
                     className="text-xl capitalize text-center text-primary font-medium break-words cursor-pointer"
-                    onClick={() => copyTextToClipboard("Текст для копирования")}
+                    onClick={copyTextToClipboard}
                 >
-                    {currentCategory?.category}
+                    {categoryTitle}
                 </h1>
                 <LanguageSwitch />
             </div>
