@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import Item from "./Item";
@@ -11,12 +11,17 @@ import EmptyListPlaceholder from "./EmptyListPlaceholder";
 import { formatNumber } from "../utils";
 import { useTranslation } from "react-i18next";
 import LanguageSwitch from "./LanguageSwitch";
+// import { DiffIcon } from "@primer/octicons-react";
+//установить пакет "@primer/octicons-react": "^19.8.0"
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const categories = useSelector((state) => state.goods.categories);
+
+    // const [showDiff, setShowDiff] = useState(false);
+
     const currentCategory = categories.find(
         (element) => element.id === categoryId
     );
@@ -44,11 +49,27 @@ const CategoryPage = () => {
     const { i18n, t } = useTranslation();
     const currLanguage = i18n.resolvedLanguage;
 
+    const copyTextToClipboard = async () => {
+        try {
+            await navigator.clipboard.writeText(currentCategory?.category);
+        } catch (err) {
+            console.error("Ошибка:", err);
+        }
+    };
+
     return (
         <div className="flex flex-col h-full">
             <div className="flex justify-between items-center mb-6 ">
-                <div className="text-transparent text-sm uppercase">{currLanguage}</div>
-                <h1 className="text-xl capitalize text-center text-primary font-medium break-words">
+                <div className="text-transparent text-sm uppercase">
+                    {currLanguage}
+                </div>
+                {/* <button>
+                    <DiffIcon size={24} fill="#ccc"/>
+                </button> */}
+                <h1
+                    className="text-xl capitalize text-center text-primary font-medium break-words cursor-pointer"
+                    onClick={() => copyTextToClipboard("Текст для копирования")}
+                >
                     {currentCategory?.category}
                 </h1>
                 <LanguageSwitch />

@@ -14,7 +14,7 @@ const LanguageSwitch = () => {
 
     return (
         <button
-            className="text-sm uppercase text-gray-300"
+            className="text-sm uppercase text-gray-400"
             type="submit"
             onClick={() => toggleLanguage()}
         >
