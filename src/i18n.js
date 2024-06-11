@@ -32,7 +32,7 @@ i18n
                     pricePerPackage: 'Price per package',
                     amount: 'Amount',
                     pricePerKg: 'Price per 1 kg/liter/piece',
-                    clipboard: 'Copied to clipboard'
+                    clipboard: 'Copied'
                 },
             },
             ru: {
@@ -50,7 +50,7 @@ i18n
                     pricePerPackage: 'Цена за упаковку',
                     amount: 'Количество',
                     pricePerKg: 'Цена за 1 кг/литр/штуку',
-                    clipboard: 'Скопировано в буфер обмена'
+                    clipboard: 'Скопировано'
                 },
             },
         },
