@@ -11,14 +11,13 @@ import EmptyListPlaceholder from "./EmptyListPlaceholder";
 import { formatNumber } from "../utils";
 import { useTranslation } from "react-i18next";
 import LanguageSwitch from "./LanguageSwitch";
+import copy from "copy-to-clipboard";
 // import { DiffIcon } from "@primer/octicons-react";
 //установить пакет "@primer/octicons-react": "^19.8.0"
-
 
 const NOTIFICATION_VISIBLE = 1;
 const NOTIFICATION_FADE_OUT = 2;
 const NOTIFICATION_HIDDEN = 3;
-
 
 const CategoryPage = () => {
     const { categoryId } = useParams();
@@ -46,8 +45,6 @@ const CategoryPage = () => {
         [itemList]
     );
 
-
-
     const { i18n, t } = useTranslation();
     const currLanguage = i18n.resolvedLanguage;
 
@@ -56,17 +53,12 @@ const CategoryPage = () => {
     const [notificationState, setNotificationState] = useState(3);
     const timeoutRef = useRef(null);
 
-    const copyTextToClipboard = async () => {
-        try {
-            await navigator.clipboard.writeText(categoryTitle);
-            setNotificationState(NOTIFICATION_VISIBLE);
-            timeoutRef.current = setTimeout(() => {
-                setNotificationState(NOTIFICATION_FADE_OUT)
-            }, 1000)
-
-        } catch (err) {
-            console.error("Ошибка:", err);
-        }
+    const copyTextToClipboard = () => {
+        copy(categoryTitle);
+        setNotificationState(NOTIFICATION_VISIBLE);
+        timeoutRef.current = setTimeout(() => {
+            setNotificationState(NOTIFICATION_FADE_OUT);
+        }, 1000);
     };
 
     useEffect(() => {
@@ -82,9 +74,20 @@ const CategoryPage = () => {
 
     return (
         <div className="flex flex-col justify-center h-full relative">
-            {notificationState !== NOTIFICATION_HIDDEN && (<div className={`absolute top-8 p-2 w-full text-sm text-center text-gray-400 transition-opacity ease-in ${(notificationState === NOTIFICATION_FADE_OUT) ? 'opacity-0' : ''}`} onTransitionEnd={() => {setNotificationState(NOTIFICATION_HIDDEN)}}>
-                {t("clipboard")}
-            </div>)}
+            {notificationState !== NOTIFICATION_HIDDEN && (
+                <div
+                    className={`absolute top-8 p-2 w-full text-sm text-center text-gray-400 transition-opacity ease-in ${
+                        notificationState === NOTIFICATION_FADE_OUT
+                            ? "opacity-0"
+                            : ""
+                    }`}
+                    onTransitionEnd={() => {
+                        setNotificationState(NOTIFICATION_HIDDEN);
+                    }}
+                >
+                    {t("clipboard")}
+                </div>
+            )}
             <div className="flex justify-between items-center mb-6 ">
                 <div className="text-transparent text-sm uppercase">
                     {currLanguage}
