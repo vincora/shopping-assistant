@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import * as linkify from "linkifyjs";
 import * as punycode from "punycode/";
 
-const Item = ({ item }) => {
+const Item = ({ item, showPriceDiff}) => {
 
     const arrayFromNotesString = (str) => {
         const fullUrls = linkify.find(str).filter((url) => url.type === "url");
@@ -37,7 +37,7 @@ const Item = ({ item }) => {
             key={item.id}
         >
             <div>{t("pricePerPackage") + ":"}</div>
-            <div className="text-right">{item.pricePerPackage}</div>
+            <div className="text-right">{`${item.pricePerPackage}${showPriceDiff ? '/' + item.priceDiffWithTarget : ''}`}</div>
             <div>{t("amount") + ":"}</div>
             <div className="text-right">{item.amount}</div>
             <div>{t("pricePerKg") + ":"}</div>
