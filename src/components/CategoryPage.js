@@ -76,7 +76,7 @@ const CategoryPage = () => {
         <div className="flex flex-col justify-center h-full relative">
             {notificationState !== NOTIFICATION_HIDDEN && (
                 <div
-                    className={`absolute top-8 p-2 w-full text-sm text-center text-gray-400 transition-opacity ease-in ${
+                    className={`absolute top-7 p-2 z-20 w-full flex justify-center transition-opacity ease-in ${
                         notificationState === NOTIFICATION_FADE_OUT
                             ? "opacity-0"
                             : ""
@@ -85,7 +85,7 @@ const CategoryPage = () => {
                         setNotificationState(NOTIFICATION_HIDDEN);
                     }}
                 >
-                    {t("clipboard")}
+                    <div className="text-sm bg-gray-100 py-1 px-3 max-w-sm rounded">{t("clipboard")}</div>
                 </div>
             )}
             <div className="flex justify-between items-center mb-6 ">
