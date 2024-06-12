@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import LanguageSwitch from "./LanguageSwitch";
 import copy from "copy-to-clipboard";
 import { DiffIcon } from "@primer/octicons-react";
+import { cn } from "../utils";
 
 const NOTIFICATION_VISIBLE = 1;
 const NOTIFICATION_FADE_OUT = 2;
@@ -82,11 +83,11 @@ const CategoryPage = () => {
         <div className="flex flex-col justify-center h-full relative">
             {notificationState !== NOTIFICATION_HIDDEN && (
                 <div
-                    className={`absolute top-7 p-2 z-20 w-full flex justify-center transition-opacity ease-in ${
+                    className={cn('absolute top-7 p-2 z-20 w-full flex justify-center transition-opacity ease-in', 
                         notificationState === NOTIFICATION_FADE_OUT
                             ? "opacity-0"
                             : ""
-                    }`}
+                    )}
                     onTransitionEnd={() => {
                         setNotificationState(NOTIFICATION_HIDDEN);
                     }}
@@ -134,7 +135,6 @@ const CategoryPage = () => {
                                 key={item.id}
                                 onAction={handleDelete}
                             >
-                                {/* <Item item={item} isDiff={(index === 0) ? false : showDiff} /> */}
                                 <Item
                                     item={item}
                                     showPriceDiff={index !== 0 && showPriceDiff}
