@@ -4,11 +4,12 @@
     "private": true,
     "dependencies": {
         "@hookform/resolvers": "^3.1.1",
+        "@primer/octicons-react": "^19.9.0",
         "@reduxjs/toolkit": "^1.9.5",
         "@testing-library/jest-dom": "^5.17.0",
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
-        "clsx": "^2.0.0",
+        "clsx": "^2.1.1",
         "copy-to-clipboard": "^3.3.3",
         "i18next": "^23.10.0",
         "i18next-browser-languagedetector": "^7.2.0",

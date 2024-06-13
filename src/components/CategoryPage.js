@@ -12,8 +12,8 @@ import { formatNumber } from "../utils";
 import { useTranslation } from "react-i18next";
 import LanguageSwitch from "./LanguageSwitch";
 import copy from "copy-to-clipboard";
-// import { DiffIcon } from "@primer/octicons-react";
-//установить пакет "@primer/octicons-react": "^19.8.0"
+import { DiffIcon } from "@primer/octicons-react";
+import { cn } from "../utils";
 
 const NOTIFICATION_VISIBLE = 1;
 const NOTIFICATION_FADE_OUT = 2;
@@ -24,8 +24,12 @@ const CategoryPage = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const categories = useSelector((state) => state.goods.categories);
+    const { t } = useTranslation();
 
-    // const [showDiff, setShowDiff] = useState(false);
+    const [showPriceDiff, setShowPriceDiff] = useState(false);
+    const toggleShowDiff = () => {
+        setShowPriceDiff((prev) => !prev);
+    };
 
     const currentCategory = categories.find(
         (element) => element.id === categoryId
@@ -41,12 +45,15 @@ const CategoryPage = () => {
                         item.pricePerPackage / item.amount
                     ),
                 }))
-                .sort((a, b) => a.pricePerUnit - b.pricePerUnit),
+                .sort((a, b) => a.pricePerUnit - b.pricePerUnit)
+                .map((item, index, arr) => ({
+                    ...item,
+
+                    priceDiffWithTarget:
+                        item.pricePerPackage - arr[0].pricePerPackage,
+                })),
         [itemList]
     );
-
-    const { i18n, t } = useTranslation();
-    const currLanguage = i18n.resolvedLanguage;
 
     const categoryTitle = currentCategory?.category;
 
@@ -76,25 +83,24 @@ const CategoryPage = () => {
         <div className="flex flex-col justify-center h-full relative">
             {notificationState !== NOTIFICATION_HIDDEN && (
                 <div
-                    className={`absolute top-7 p-2 z-20 w-full flex justify-center transition-opacity ease-in ${
+                    className={cn('absolute top-7 p-2 z-20 w-full flex justify-center transition-opacity ease-in', 
                         notificationState === NOTIFICATION_FADE_OUT
                             ? "opacity-0"
                             : ""
-                    }`}
+                    )}
                     onTransitionEnd={() => {
                         setNotificationState(NOTIFICATION_HIDDEN);
                     }}
                 >
-                    <div className="text-sm bg-gray-100 py-1 px-3 max-w-sm rounded">{t("clipboard")}</div>
+                    <div className="text-sm bg-gray-100 py-1 px-3 max-w-sm rounded">
+                        {t("clipboard")}
+                    </div>
                 </div>
             )}
             <div className="flex justify-between items-center mb-6 ">
-                <div className="text-transparent text-sm uppercase">
-                    {currLanguage}
-                </div>
-                {/* <button>
-                    <DiffIcon size={24} fill="#ccc"/>
-                </button> */}
+                <button onClick={toggleShowDiff}>
+                    <DiffIcon size={24} fill="#ccc" />
+                </button>
                 <h1
                     className="text-xl capitalize text-center text-primary font-medium break-words cursor-pointer"
                     onClick={copyTextToClipboard}
@@ -113,7 +119,7 @@ const CategoryPage = () => {
             )}
             {itemList.length > 0 && (
                 <div className="flex flex-col items-center grow overflow-auto space-y-3 transition-all">
-                    {sortedItems.map((item) => {
+                    {sortedItems.map((item, index) => {
                         const handleDelete = () => {
                             if (
                                 !window.confirm(
@@ -129,7 +135,10 @@ const CategoryPage = () => {
                                 key={item.id}
                                 onAction={handleDelete}
                             >
-                                <Item item={item} />
+                                <Item
+                                    item={item}
+                                    showPriceDiff={index !== 0 && showPriceDiff}
+                                />
                             </ActionDeleteElement>
                         );
                     })}

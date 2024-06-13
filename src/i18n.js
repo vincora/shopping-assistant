@@ -11,7 +11,7 @@ i18n
     // init i18next
     // for all options read: https://www.i18next.com/overview/configuration-options
     .init({
-        debug: true,
+        debug: false,
         fallbackLng: "ru",
         interpolation: {
             escapeValue: false, // not needed for react as it escapes by default
@@ -28,10 +28,11 @@ i18n
                     emptyListDescription: `Add items to compare them <br /> by price per unit (kg,l,piece etc.)`,
                     addButton: 'Add',
                     backButton: 'Back',
-                    notes: 'Notes',
-                    pricePerPackage: 'Price per package',
-                    amount: 'Amount',
-                    pricePerKg: 'Price per 1 kg/liter/piece',
+                    notes: 'Notes:',
+                    pricePerPackage: 'Price per package:',
+                    amount: 'Amount:',
+                    pricePerKg: 'Price per 1 kg/liter/piece:',
+                    priceDiffFromBestDeal: 'Price diff from best deal:',
                     clipboard: 'Copied'
                 },
             },
@@ -46,10 +47,11 @@ i18n
                     emptyListDescription: 'Добавьте товары для сравнения  <br /> по цене за кг/литр/штуку',
                     addButton: 'Добавить',
                     backButton: 'Назад',
-                    notes: 'Заметки',
-                    pricePerPackage: 'Цена за упаковку',
-                    amount: 'Количество',
-                    pricePerKg: 'Цена за 1 кг/литр/штуку',
+                    notes: 'Заметки:',
+                    pricePerPackage: 'Цена за упаковку:',
+                    amount: 'Количество:',
+                    pricePerKg: 'Цена за 1 кг/литр/штуку:',
+                    priceDiffFromBestDeal: 'Разница с самым выгодным:',
                     clipboard: 'Скопировано'
                 },
             },
