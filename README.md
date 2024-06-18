@@ -64,5 +64,5 @@ The **Shopping Assistant** is a web application designed to simplify the process
 -   [React Hook Form](https://react-hook-form.com/)
 -   [Redux Toolkit](https://redux-toolkit.js.org/)
 -   [React Router 6](https://reactrouter.com/)
--   [Zod](https://github.com/colinhacks/zod)
+-   [Zod](https://zod.dev/)
 -   [i18n](https://www.i18next.com/)
