@@ -66,7 +66,3 @@ The **Shopping Assistant** is a web application designed to simplify the process
 -   [React Router 6](https://reactrouter.com/)
 -   [Zod](https://github.com/colinhacks/zod)
 -   [i18n](https://www.i18next.com/)
-
-Feel free to reach out if you have any questions or need further assistance. Happy shopping!
-
-_Julia Glagola_
