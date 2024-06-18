@@ -1,6 +1,6 @@
 # Shopping Assistant App
 
-The **Shopping Assistant** is a web application designed to simplify the process of comparing prices of items within the same category, even when they come in different package sizes. It provides users with a clear view of the price per standard unit (e.g., per kilogram, liter, piece) for easy decision-making while shopping.
+The **Shopping Assistant** is a web application designed to simplify the process of comparing prices of items within the same category, even when they come in different package sizes. It provides users with a clear view of the price per standard unit (e.g., per kilogram, liter, piece) for easy decision-making while shopping. The application supports both English and Russian languages.
 
 ## Table of Contents
 
@@ -19,9 +19,13 @@ The **Shopping Assistant** is a web application designed to simplify the process
 
 -   **Item Entry**: Within each category, users can add multiple items specifying the quantity and corresponding price, along with optional notes for additional information.
 
+-   **Item Notes with Hyperlinks**: When adding a new item, users can include notes that may contain links to online stores. These links are automatically transformed into shortened clickable formats for user convenience.
+
 -   **Price Normalization**: The app calculates and displays the price per standard unit for each item, allowing for easy comparison.
 
--   **Sorting and Filtering**: Items within each category are sorted by price per standard unit, making it simple to identify the most cost-effective option.
+-   **Sorting**: Items within each category are sorted by price per standard unit, making it simple to identify the most cost-effective option.
+
+-   **Total Price Difference Mode:** A mode that shows the difference in total price between sorted items and the most cost-effective option in the category. Because the most cost-effective option might mean that you need to buy a very big package and spend much more money in total. So you can make a decision whether you need a large package at the best price per unit or if opting for a smaller package at a slightly higher unit price would be more cost-effective overall.
 
 -   **User-Friendly Interface**: Built using React and Tailwind, the application offers an intuitive and visually appealing experience.
 
@@ -53,7 +57,7 @@ To get started with the **Shopping Assistant** app, follow these steps:
 
 2. **Adding a New Item**:
 
-    - Inside the category page, you'll find a form to add a new item. Enter the quantity (e.g., kilograms, liters, pieces) and corresponding price for the item. Optionally, add notes for additional information. Click on the "Add" button to add the item to the category.
+    - Inside the category page, you'll find a form to add a new item. Enter the quantity (e.g., kilograms, liters, pieces) and corresponding price for the item. Optionally, add notes for additional information. You can write text and paste a hyperlink to an online store if needed (it will be automatically transformed into a clickable format for easy access). Click on the "Add" button to add the item to the category.
 
 3. **Price Comparison**:
 
@@ -63,11 +67,15 @@ To get started with the **Shopping Assistant** app, follow these steps:
 
     - Items within each category are sorted by price per standard unit, allowing for easy comparison.
 
-5. **Navigating Between Pages**:
+5. **Total Price Difference Mode**:
+
+    - Enable the Total Price Difference Mode to see the difference in total price between items sorted by price per standard unit (e.g., per kilogram, liter). This mode can be toggled from the button in the top left corner, helping users understand how much more or less expensive each item is compared to the most cost-effective option in the category.
+
+6. **Navigating Between Pages**:
 
     - To go back from a category page to the list of categories, simply click on the "Back" button.
 
-6. **Deleting Categories and Items**:
+7. **Deleting Categories and Items**:
     - On mobile devices, you can delete categories and items by swiping left. On desktop, the delete button will appear when you hover over the element.
 
 ## Technologies Used
@@ -78,26 +86,7 @@ To get started with the **Shopping Assistant** app, follow these steps:
 -   [Redux Toolkit](https://redux-toolkit.js.org/)
 -   [React Router 6](https://reactrouter.com/)
 -   [Zod](https://github.com/colinhacks/zod)
-
----
-
-## Contributing
-
-If you'd like to contribute to this project, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bug fix.
-3. Make your changes and commit them.
-4. Push to your forked repository.
-5. Create a pull request to the original repository.
-
----
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
+-   [i18n](https://www.i18next.com/)
 
 Feel free to reach out if you have any questions or need further assistance. Happy shopping!
 
