@@ -5,11 +5,8 @@ The **Shopping Assistant** is a web application designed to simplify the process
 ## Table of Contents
 
 -   [Features](#features)
--   [Getting Started](#getting-started)
 -   [Usage](#usage)
 -   [Technologies Used](#technologies-used)
--   [Contributing](#contributing)
--   [License](#license)
 
 ---
 
@@ -28,24 +25,6 @@ The **Shopping Assistant** is a web application designed to simplify the process
 -   **Total Price Difference Mode:** A mode that shows the difference in total price between sorted items and the most cost-effective option in the category. Because the most cost-effective option might mean that you need to buy a very big package and spend much more money in total. So you can make a decision whether you need a large package at the best price per unit or if opting for a smaller package at a slightly higher unit price would be more cost-effective overall.
 
 -   **User-Friendly Interface**: Built using React and Tailwind, the application offers an intuitive and visually appealing experience.
-
----
-
-## Getting Started
-
-To get started with the **Shopping Assistant** app, follow these steps:
-
-1. Clone the repository to your local machine:
-   git clone https://github.com/vincora/shopping-assistant.git
-
-2. Navigate to the project directory:
-   cd shopping-assistant
-
-3. Install the necessary dependencies:
-   npm install
-
-4. Start the development server:
-   npm start
 
 ---
 
