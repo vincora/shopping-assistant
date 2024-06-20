@@ -2,13 +2,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useDispatch, useSelector } from "react-redux";
-import { addCategory } from "../store/itemsSlice";
+import { addCategory } from "../../store/itemsSlice";
 import { useNavigate } from "react-router-dom";
-import Button from "./Button";
+import Button from "../Button";
 import { v4 } from "uuid";
 import { useEffect } from "react";
-import { cn } from "../utils";
-import { useTranslation } from 'react-i18next';
+import { cn } from "../../utils";
+import { useTranslation } from "react-i18next";
 
 const fieldName = "category_not_search"; // search prefix is used to prevent safari autofill pop-up
 
@@ -37,9 +37,9 @@ const CategoryForm = () => {
         navigate(`category/${id}`);
     };
     useEffect(() => {
-        if (categories.length === 0){
-            setFocus(fieldName)
-        };
+        if (categories.length === 0) {
+            setFocus(fieldName);
+        }
     }, [setFocus, categories.length]);
 
     const { t } = useTranslation();
@@ -57,13 +57,20 @@ const CategoryForm = () => {
                         errors[fieldName] && "border-red-600"
                     )}
                     type="text"
-                    placeholder={t('categoryPlaceholder')}
+                    placeholder={t("categoryPlaceholder")}
                     {...register(fieldName)}
-                    tabIndex='1'
+                    tabIndex="1"
                 />
             </div>
             <div className="w-min">
-                <Button type="submit" bgColor="bg-sky-500" hoverBgColor="bg-sky-300" tabIndex="2">{t('addButton')}</Button>
+                <Button
+                    type="submit"
+                    bgColor="bg-sky-500"
+                    hoverBgColor="bg-sky-300"
+                    tabIndex="2"
+                >
+                    {t("addButton")}
+                </Button>
             </div>
         </form>
     );

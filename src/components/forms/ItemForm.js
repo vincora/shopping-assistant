@@ -3,9 +3,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addItem } from "../store/itemsSlice";
-import Button from "./Button";
-import { cn, safeEvaluate } from "../utils";
+import { addItem } from "../../store/itemsSlice";
+import Button from "../Button";
+import { cn, safeEvaluate } from "../../utils";
 import { useTranslation } from "react-i18next";
 
 const schema = z.object({
@@ -62,7 +62,7 @@ const ItemForm = () => {
             <textarea
                 className="p-3 resize-none border rounded w-full col-span-2"
                 {...register("notes")}
-                placeholder={t('notes')}
+                placeholder={t("notes")}
                 tabIndex="3"
             ></textarea>
 
@@ -75,7 +75,7 @@ const ItemForm = () => {
                     {...register("pricePerPackage")}
                     type="text"
                     name="pricePerPackage"
-                    placeholder={t('pricePerPackage')}
+                    placeholder={t("pricePerPackage")}
                     inputMode="decimal"
                     tabIndex="1"
                     id="myInput"
@@ -91,7 +91,7 @@ const ItemForm = () => {
                     {...register("amount")}
                     type="text"
                     name="amount"
-                    placeholder={t('amount')}
+                    placeholder={t("amount")}
                     inputMode="decimal"
                     tabIndex="2"
                 />
@@ -106,11 +106,11 @@ const ItemForm = () => {
                 tabIndex="5"
                 type="button"
             >
-                {t('backButton')}
+                {t("backButton")}
             </Button>
 
             <Button type="submit" tabIndex="4" id="myBtn">
-                {t('addButton')}
+                {t("addButton")}
             </Button>
         </form>
     );

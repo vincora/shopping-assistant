@@ -33,7 +33,8 @@ i18n
                     amount: 'Amount:',
                     pricePerKg: 'Price per 1 kg/liter/piece:',
                     priceDiffFromBestDeal: 'Price diff from best deal:',
-                    clipboard: 'Copied'
+                    clipboard: 'Copied',
+                    bestDeal: 'Best deal:'
                 },
             },
             ru: {
@@ -52,7 +53,8 @@ i18n
                     amount: 'Количество:',
                     pricePerKg: 'Цена за 1 кг/литр/штуку:',
                     priceDiffFromBestDeal: 'Разница с самым выгодным:',
-                    clipboard: 'Скопировано'
+                    clipboard: 'Скопировано',
+                    bestDeal: 'Лучший выбор:'
                 },
             },
         },

@@ -57,6 +57,14 @@ const itemsSlice = createSlice({
                 });
             }
         },
+        addBestItem: (state, { payload: {categoryId, bestItem}}) => {
+            for (let category of state.categories) {
+                if (category.id !== categoryId) {
+                    continue;
+                }
+                category.bestItem = bestItem
+            }
+        },
         deleteItem: (
             state,
             {
@@ -83,6 +91,6 @@ const itemsSlice = createSlice({
     },
 });
 
-export const { addCategory, addItem, deleteItem, deleteCategory } =
+export const { addCategory, addItem, addBestItem, deleteItem, deleteCategory } =
     itemsSlice.actions;
 export default itemsSlice.reducer;

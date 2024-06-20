@@ -1,16 +1,18 @@
 import { useSelector } from "react-redux";
-import Category from "./Category";
-import CategoryForm from "./CategoryForm";
-import ActionDeleteElement from "./ActionDeleteElement";
-import { deleteCategory } from "../store/itemsSlice";
+import Category from "../Category";
+import CategoryForm from "../forms/CategoryForm";
+import ActionDeleteElement from "../ActionDeleteElement";
+import { deleteCategory } from "../../store/itemsSlice";
 import { useDispatch } from "react-redux";
-import emptyList from "../images/EmptyInbox.png";
-import EmptyListPlaceholder from "./EmptyListPlaceholder";
+import emptyList from "../../images/EmptyInbox.png";
+import EmptyListPlaceholder from "../EmptyListPlaceholder";
 import { useTranslation } from "react-i18next";
-import LanguageSwitch from "./LanguageSwitch";
+import LanguageSwitch from "../LanguageSwitch";
+import { selectCategoriesWithSortedItemsAndBestDeal } from "../../store/selectors/selectCategoriesWithSortedItems";
+
 
 const FirstPage = () => {
-    const categories = useSelector((state) => state.goods.categories);
+    const categories = useSelector(selectCategoriesWithSortedItemsAndBestDeal);
     const dispatch = useDispatch();
     const { i18n, t } = useTranslation();
     const currLanguage = i18n.resolvedLanguage;
@@ -18,7 +20,9 @@ const FirstPage = () => {
     return (
         <div className="flex flex-col h-full">
             <div className="flex justify-between items-center mb-6 ">
-                <div className="text-transparent text-sm uppercase">{currLanguage}</div>
+                <div className="text-transparent text-sm uppercase">
+                    {currLanguage}
+                </div>
                 <h1 className="text-xl font-medium text-center text-primary">
                     {t("appTitle")}
                 </h1>
@@ -52,7 +56,7 @@ const FirstPage = () => {
                                 key={category.id}
                                 onAction={onCategoryDelete}
                             >
-                                <Category category={category} />
+                                <Category category={category}/>
                             </ActionDeleteElement>
                         );
                     })}

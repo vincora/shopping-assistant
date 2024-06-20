@@ -4,12 +4,13 @@ import "./index.css";
 import "./icomoon/style.css";
 import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import FirstPage from "./components/FirstPage";
-import CategoryPage from "./components/CategoryPage";
+import FirstPage from "./components/pages/FirstPage";
+import CategoryPage from "./components/pages/CategoryPage";
 import { Provider } from "react-redux";
 import store from "./store/store";
-import * as serviceWorkerRegistration from './serviceWorkerRegistration';
-import './i18n';
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+import "./i18n";
+
 
 const router = createBrowserRouter([
     {
@@ -32,8 +33,6 @@ store.subscribe(() => {
     const state = store.getState();
     localStorage.setItem("state", JSON.stringify(state));
 });
-
-
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

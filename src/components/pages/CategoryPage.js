@@ -1,19 +1,20 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import Item from "./Item";
-import ItemForm from "./ItemForm";
-import ActionDeleteElement from "./ActionDeleteElement";
+import Item from "../Item";
+import ItemForm from "../forms/ItemForm";
+import ActionDeleteElement from "../ActionDeleteElement";
 import { useDispatch } from "react-redux";
-import { deleteItem } from "../store/itemsSlice";
-import emptyCategory from "../images/NoItemsCart.png";
-import EmptyListPlaceholder from "./EmptyListPlaceholder";
-import { formatNumber } from "../utils";
+import { deleteItem } from "../../store/itemsSlice";
+import emptyCategory from "../../images/NoItemsCart.png";
+import EmptyListPlaceholder from "../EmptyListPlaceholder";
+import { formatNumber } from "../../utils";
 import { useTranslation } from "react-i18next";
-import LanguageSwitch from "./LanguageSwitch";
+import LanguageSwitch from "../LanguageSwitch";
 import copy from "copy-to-clipboard";
 import { DiffIcon } from "@primer/octicons-react";
-import { cn } from "../utils";
+import { cn } from "../../utils";
+import { selectCategoryWithPricePerUnit } from "../../store/selectors/selectCategoriesWithSortedItems";
 
 const NOTIFICATION_VISIBLE = 1;
 const NOTIFICATION_FADE_OUT = 2;
@@ -23,7 +24,6 @@ const CategoryPage = () => {
     const { categoryId } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const categories = useSelector((state) => state.goods.categories);
     const { t } = useTranslation();
 
     const [showPriceDiff, setShowPriceDiff] = useState(false);
@@ -31,27 +31,22 @@ const CategoryPage = () => {
         setShowPriceDiff((prev) => !prev);
     };
 
-    const currentCategory = categories.find(
+    const categoriesWithSortedItems = useSelector(
+        selectCategoryWithPricePerUnit
+    );
+
+    const currentCategory = categoriesWithSortedItems.find(
         (element) => element.id === categoryId
     );
     const itemList = currentCategory?.items;
 
     const sortedItems = useMemo(
         () =>
-            (itemList ?? [])
-                .map((item) => ({
-                    ...item,
-                    pricePerUnit: formatNumber(
-                        item.pricePerPackage / item.amount
-                    ),
-                }))
-                .sort((a, b) => a.pricePerUnit - b.pricePerUnit)
-                .map((item, index, arr) => ({
-                    ...item,
-
-                    priceDiffWithTarget:
-                        item.pricePerPackage - arr[0].pricePerPackage,
-                })),
+            (itemList ?? []).map((item) => ({
+                ...item,
+                priceDiffWithTarget:
+                    item.pricePerPackage - itemList[0].pricePerPackage,
+            })),
         [itemList]
     );
 
@@ -83,7 +78,8 @@ const CategoryPage = () => {
         <div className="flex flex-col justify-center h-full relative">
             {notificationState !== NOTIFICATION_HIDDEN && (
                 <div
-                    className={cn('absolute top-7 p-2 z-20 w-full flex justify-center transition-opacity ease-in', 
+                    className={cn(
+                        "absolute top-7 p-2 z-20 w-full flex justify-center transition-opacity ease-in",
                         notificationState === NOTIFICATION_FADE_OUT
                             ? "opacity-0"
                             : ""
