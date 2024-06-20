@@ -70,6 +70,21 @@ const ItemForm = () => {
                 <input
                     className={cn(
                         "border rounded p-3 w-full",
+                        errors.amount && "outline-red-600"
+                    )}
+                    {...register("amount")}
+                    type="text"
+                    name="amount"
+                    placeholder={t("amount")}
+                    inputMode="decimal"
+                    tabIndex="2"
+                />
+            </label>
+
+            <label>
+                <input
+                    className={cn(
+                        "border rounded p-3 w-full",
                         errors.pricePerPackage && "outline-red-600"
                     )}
                     {...register("pricePerPackage")}
@@ -79,21 +94,6 @@ const ItemForm = () => {
                     inputMode="decimal"
                     tabIndex="1"
                     id="myInput"
-                />
-            </label>
-
-            <label>
-                <input
-                    className={cn(
-                        "border rounded p-3 w-full",
-                        errors.amount && "outline-red-600"
-                    )}
-                    {...register("amount")}
-                    type="text"
-                    name="amount"
-                    placeholder={t("amount")}
-                    inputMode="decimal"
-                    tabIndex="2"
                 />
             </label>
 
