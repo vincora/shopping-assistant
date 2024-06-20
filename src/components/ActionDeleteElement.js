@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import { cn } from "../utils";
-import {isMobile} from 'react-device-detect';
-
+import { isMobile } from "react-device-detect";
 
 const ActionDeleteElement = ({ children, onAction }) => {
     const ref = useRef();
@@ -53,22 +52,22 @@ const ActionDeleteElement = ({ children, onAction }) => {
         }
     };
 
-    
     return (
         <div
-            className={cn("w-full relative", {'w-10/12': !isMobile})}
+            className="w-full relative"
             onTouchStart={handleTouchStart}
             onTouchMove={handleTouchMove}
             onTouchEnd={handleTouchEnd}
             onTransitionEnd={handleTransitionEnd}
         >
             <div
-                className="relative z-10 transition-transform duration-200 ease-linear group"
+                className="relative flex justify-center items-center z-10 transition-transform duration-200 ease-linear group"
                 ref={ref}
             >
-                {children}
+                {!isMobile && <div className="w-12 opacity-0 invisible"></div>}
+                <div className="w-full">{children}</div>
                 {!isMobile && (
-                    <div className="hidden group-hover:md:flex justify-end items-center absolute top-0 -right-9 w-12 h-full">
+                    <div className="flex justify-center items-center w-12 h-full opacity-0 invisible pointer-events-none group-hover:md:opacity-100 group-hover:md:visible group-hover:md:pointer-events-auto">
                         <button
                             className="p-3 icon-delete h-full text-gray-300 hover:text-gray-500"
                             onClick={(e) => {
@@ -79,10 +78,12 @@ const ActionDeleteElement = ({ children, onAction }) => {
                     </div>
                 )}
             </div>
-            <div className="absolute inset-0 z-0 flex">
+            <div className={cn("absolute inset-0 z-0 flex")}>
+                {!isMobile && <div className="w-12 opacity-0 invisible pointer-events-none"></div>}
                 <div className="w-full bg-red-700 flex justify-end items-center p-3 border rounded">
                     <div className="icon-delete text-white text-right"></div>
                 </div>
+                {!isMobile && <div className="w-12 opacity-0 invisible pointer-events-none"></div>}
             </div>
         </div>
     );
