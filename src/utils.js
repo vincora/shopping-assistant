@@ -25,5 +25,6 @@ export const formatNumber = (num) => {
         const decimalIndex = numString.substring(2).search(/0[^0]/) + 1;
         return num.toFixed(decimalIndex + 2);
     }
-    return num.toFixed(2);
+
+    return num.toFixed(2).replace(/\.00$/,'')
 };

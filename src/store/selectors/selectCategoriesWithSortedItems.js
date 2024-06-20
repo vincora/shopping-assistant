@@ -1,5 +1,4 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { formatNumber } from "../../utils";
 
 export const selectCategoriesWithSortedItems = createSelector(
     [(state) => state.goods.categories],
@@ -24,7 +23,7 @@ export const selectCategoryWithPricePerUnit = createSelector(
             const itemsWithPricePerUnit = category.items.map((item) => {
                 return {
                     ...item,
-                    pricePerUnit: formatNumber(item.pricePerPackage / item.amount),
+                    pricePerUnit: item.pricePerPackage / item.amount,
                 };
             });
             return {

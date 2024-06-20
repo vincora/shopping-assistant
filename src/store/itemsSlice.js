@@ -57,14 +57,6 @@ const itemsSlice = createSlice({
                 });
             }
         },
-        addBestItem: (state, { payload: {categoryId, bestItem}}) => {
-            for (let category of state.categories) {
-                if (category.id !== categoryId) {
-                    continue;
-                }
-                category.bestItem = bestItem
-            }
-        },
         deleteItem: (
             state,
             {

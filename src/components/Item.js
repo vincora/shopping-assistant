@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { useTranslation } from "react-i18next";
 import * as linkify from "linkifyjs";
 import * as punycode from "punycode/";
-import { cn } from "../utils";
+import { cn, formatNumber } from "../utils";
 
 const Item = ({ item, showPriceDiff }) => {
     const arrayFromNotesString = (str) => {
@@ -51,16 +51,16 @@ const Item = ({ item, showPriceDiff }) => {
                             isPositive ? "bg-red-600" : "bg-green-600"
                         )}
                     >
-                        {`${isPositive ? "+" : ""}${item.priceDiffWithTarget}`}
+                        {`${isPositive ? "+" : ""}${formatNumber(item.priceDiffWithTarget)}`}
                     </div>
                 ) : (
-                    <div className="text-right">{item.pricePerPackage}</div>
+                    <div className="text-right">{formatNumber(item.pricePerPackage)}</div>
                 )}
             </div>
             <div>{t("amount")}</div>
-            <div className="text-right">{item.amount}</div>
+            <div className="text-right">{formatNumber(item.amount)}</div>
             <div>{t("pricePerKg")}</div>
-            <div className="text-right">{item.pricePerUnit}</div>
+            <div className="text-right">{formatNumber(item.pricePerUnit)}</div>
             {item.notes && <div className="col-span-2">{t("notes")}</div>}
             {item.notes && (
                 <div className="break-words col-span-2">

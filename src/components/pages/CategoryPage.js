@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import { deleteItem } from "../../store/itemsSlice";
 import emptyCategory from "../../images/NoItemsCart.png";
 import EmptyListPlaceholder from "../EmptyListPlaceholder";
-import { formatNumber } from "../../utils";
 import { useTranslation } from "react-i18next";
 import LanguageSwitch from "../LanguageSwitch";
 import copy from "copy-to-clipboard";

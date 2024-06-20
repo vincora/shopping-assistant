@@ -1,10 +1,12 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import {formatNumber} from "../utils";
 
 const Category = ({ category }) => {
     const navigate = useNavigate();
     const {t} = useTranslation()
+    
 
     return (
         <div
@@ -21,7 +23,7 @@ const Category = ({ category }) => {
             </div>
             {category.bestDeal && 
             <div className="text-sm text-gray-400">
-                {t("bestDeal")} {category.bestDeal.pricePerUnit} × {category.bestDeal.amount} = {category.bestDeal.pricePerPackage}
+                {t("bestDeal")} {formatNumber(category.bestDeal.pricePerUnit)} × {category.bestDeal.amount} = {category.bestDeal.pricePerPackage}
             </div>}
         </div>
     );
