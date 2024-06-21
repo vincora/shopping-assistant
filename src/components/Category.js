@@ -23,7 +23,7 @@ const Category = ({ category }) => {
             </div>
             {category.bestDeal && 
             <div className="text-sm text-gray-400">
-                {t("bestDeal")} {formatNumber(category.bestDeal.pricePerUnit)} × {category.bestDeal.amount} = {category.bestDeal.pricePerPackage}
+                {t("bestDeal")} {formatNumber(category.bestDeal.pricePerUnit)} × {formatNumber(category.bestDeal.amount)} = {formatNumber(category.bestDeal.pricePerPackage)}
             </div>}
         </div>
     );
